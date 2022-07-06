@@ -24,7 +24,7 @@ export struct MonthGrid {
 
   build() {
     Column() {
-      Text(this.months[this.month-1] + " " + this.year).fontSize(this.textSize).alignSelf(ItemAlign.Start).margin({ left: 20 })
+      Text(this.months[this.month-1] + " " + this.year).fontSize(this.textSize).alignSelf(ItemAlign.Start)
         .fontWeight(FontWeight.Bolder)
       Grid() {
         ForEach(this.weekDays, (item) => {
@@ -45,6 +45,6 @@ export struct MonthGrid {
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr 1fr 1fr ')
       .rowsTemplate('1fr 1fr 1fr 1fr 1fr 1fr 1fr')
       .width('100%').height(300)
-    }
+    }.padding({bottom : 10})
   }
 }

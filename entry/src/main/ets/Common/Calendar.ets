@@ -50,11 +50,11 @@ export class Calendar {
     let listOfYear: number[] = []
     let currYear = year - 1;
     let i = 0
-    while (i <= 12) {
+    while (i < 24) {
       listOfYear.push(currYear)
       listOfMonths.push(month)
       month = month + 1
-      if (month == 12) {
+      if (month == 13) {
         month = 1
         currYear = currYear + 1
       }
