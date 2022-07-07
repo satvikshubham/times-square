@@ -8,6 +8,7 @@ export struct MonthGrid {
   month: number = 6
   monthDays: string [] = []
   inMonthArray: boolean []= []
+  @State selectedDate: number = 0
 
   aboutToAppear() {
     var temp = Calendar.getDaysArray(this.year, this.month)
@@ -18,7 +19,6 @@ export struct MonthGrid {
   months: string [] = ["January", "February",
   "March", "April", "May", "June", "July", "August",
   "September", "October", "November", "December"]
-
   weekDays: string [] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
   textSize: number = 14
 
@@ -37,14 +37,19 @@ export struct MonthGrid {
             CalendarCellView({
               date: item,
               textSize: 15,
-              inMonth: this.inMonthArray[index]
+              inMonth: this.inMonthArray[index],
+              selectedDate: this.selectedDate
             })
           }.padding(2)
+          .onClick(() => {
+            console.log(item)
+            this.selectedDate = item
+          })
         })
       }
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr 1fr 1fr ')
       .rowsTemplate('1fr 1fr 1fr 1fr 1fr 1fr 1fr')
       .width('100%').height(300)
-    }.padding({bottom : 10})
+    }.padding({ bottom: 10 })
   }
 }
