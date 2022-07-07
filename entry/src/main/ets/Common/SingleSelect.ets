@@ -3,7 +3,7 @@ import { Calendar } from './Calendar'
 
 @Entry
 @Component
-export struct MonthGrid {
+export struct SingleSelectCalendar {
   year: number = 2021
   month: number = 6
   monthDays: string [] = []

@@ -1,16 +1,19 @@
 import { Calendar } from './Calendar'
-import { MonthGrid } from './MonthView'
+import { SingleSelectCalendar } from './SingleSelect'
 
 @Entry
 @Component
-export struct ModelCalendar {
+export struct SingleSelectModelCalendar {
   currentMonth = new Date().getMonth()
   currentYear = new Date().getFullYear()
   scroller: Scroller = new Scroller()
   monthArray: number[]
   yearArray: number []
-  indexArray: number [] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14
-  , 15, 16, 17, 18, 19, 20, 21, 22, 23]
+  //  indexArray: number [] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14
+  //  , 15, 16, 17, 18, 19, 20, 21, 22, 23]
+  indexArray: number [] = Array.apply(null, Array(23)).map(function (item, i) {
+    return i
+  })
 
   aboutToAppear() {
     var temp = Calendar.getCalendarForYear(this.currentMonth, this.currentYear)
@@ -23,7 +26,7 @@ export struct ModelCalendar {
       List({ initialIndex: 13 }) {
         ForEach(this.indexArray, (item) => {
           ListItem() {
-            MonthGrid({
+            SingleSelectCalendar({
               month: this.monthArray[item],
               year: this.yearArray[item]
             })
