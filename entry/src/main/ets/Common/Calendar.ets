@@ -11,7 +11,7 @@ export class Calendar {
   }
 
   static getDaysArray = (year: number, month: number): any => {
-    let days: string[] = [];
+    let days: number[] = [];
     let inMonthArray: boolean[] = [];
     let firstDay = Calendar.getFirstDay(year, month);
     let prevMonth = month - 1;
@@ -25,7 +25,7 @@ export class Calendar {
       prevMonthDays = 29;
     }
     for (let i = 0; i < firstDay; i++) {
-      days.push((prevMonthDays - firstDay + i + 1).toString());
+      days.push((prevMonthDays - firstDay + i + 1));
       inMonthArray.push(false)
     }
     let daysInMonth = Calendar.ar[month - 1];
@@ -33,13 +33,13 @@ export class Calendar {
       daysInMonth = 29;
     }
     for (let i = 1; i <= daysInMonth; i++) {
-      days.push(i.toString());
+      days.push(i);
       inMonthArray.push(true)
     }
     if (days.length % 7 != 0) {
       let totalNoOfDaysToAdd = 7 - (days.length % 7);
       for (let i = 1; i <= totalNoOfDaysToAdd; i++) {
-        days.push(i.toString());
+        days.push(i);
         inMonthArray.push(false)
       }
     }

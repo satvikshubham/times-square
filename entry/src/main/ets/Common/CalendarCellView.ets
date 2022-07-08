@@ -4,14 +4,14 @@ export struct CalendarCellView {
   @State date: number = 0
   // To be decided later
   dayIcon: Resource
-  textSize: number = 20
+  textSize: number | string | Resource = '20fp'
   inMonthColor: ResourceColor = "#ebf5ef"
   notInMonthColor: ResourceColor = "#d0d9d4"
   inMonthTextColor: ResourceColor = "#303133"
   notInMonthTextColor: ResourceColor = "#787a7d"
   inMonth: boolean = true
   isCustom: boolean = false
-  selectedDate: number = 0
+  selectedDate: number | Set<number> = 0
   selectedTextColor: ResourceColor  = "#fafafa"
   selectedBackgroundColor: ResourceColor= "#3a4352"
   getBackgroundColor = (date: number): ResourceColor => {
@@ -28,6 +28,7 @@ export struct CalendarCellView {
     }
   }
   getTextColor = (date: number): ResourceColor => {
+
     if (this.inMonth) {
       if (this.selectedDate != 0 && this.selectedDate == date) {
         return this.selectedTextColor
@@ -45,7 +46,7 @@ export struct CalendarCellView {
     Row() {
       Column() {
         Text(this.date.toString()).fontSize(this.textSize).fontColor(this.getTextColor(this.date))
-        Image(this.dayIcon).height(10).width(10)
+        Image(this.dayIcon).height('10vp').width('10vp')
       }
       .width('100%').backgroundColor(this.getBackgroundColor(this.date))
     }

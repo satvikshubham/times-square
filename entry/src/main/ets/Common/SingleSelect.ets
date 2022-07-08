@@ -20,7 +20,7 @@ export struct SingleSelectCalendar {
   "March", "April", "May", "June", "July", "August",
   "September", "October", "November", "December"]
   weekDays: string [] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-  textSize: number = 14
+  textSize: number | string | Resource = '14fp'
 
   build() {
     Column() {
@@ -36,11 +36,11 @@ export struct SingleSelectCalendar {
           GridItem() {
             CalendarCellView({
               date: item,
-              textSize: 15,
+              textSize: '15fp',
               inMonth: this.inMonthArray[index],
               selectedDate: this.selectedDate
             })
-          }.padding(2)
+          }.padding('2vp')
           .onClick(() => {
             console.log(item)
             this.selectedDate = item
@@ -49,7 +49,7 @@ export struct SingleSelectCalendar {
       }
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr 1fr 1fr ')
       .rowsTemplate('1fr 1fr 1fr 1fr 1fr 1fr 1fr')
-      .width('100%').height(300)
-    }.padding({ bottom: 10 })
+      .width('100%').height('300vp')
+    }.padding({ bottom: '10vp' })
   }
 }

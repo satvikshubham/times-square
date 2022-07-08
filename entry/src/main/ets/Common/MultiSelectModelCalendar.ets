@@ -1,11 +1,12 @@
 import { Calendar } from './Calendar'
-import {MultiSelectCalendar} from './MultiSelect'
+import { MultiSelectCalendar } from './MultiSelect'
 
 @Entry
 @Component
 export struct MultiSelectModelCalendar {
   currentMonth = new Date().getMonth()
   currentYear = new Date().getFullYear()
+  
   monthArray: number[]
   yearArray: number []
   indexArray: number [] = Array.apply(null, Array(23)).map(function (item, i) {
@@ -30,6 +31,6 @@ export struct MultiSelectModelCalendar {
           }
         })
       }
-    }.padding(20)
+    }.padding('20vp')
   }
 }
