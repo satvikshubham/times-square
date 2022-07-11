@@ -6,13 +6,12 @@ import { MultiSelectCalendar } from './MultiSelect'
 export struct MultiSelectModelCalendar {
   currentMonth = new Date().getMonth()
   currentYear = new Date().getFullYear()
-  
   monthArray: number[]
   yearArray: number []
+
   indexArray: number [] = Array.apply(null, Array(23)).map(function (item, i) {
     return i
   })
-
   aboutToAppear() {
     var temp = Calendar.getCalendarForYear(this.currentMonth, this.currentYear)
     this.monthArray = temp.listOfMonths
@@ -26,7 +25,8 @@ export struct MultiSelectModelCalendar {
           ListItem() {
             MultiSelectCalendar({
               month: this.monthArray[item],
-              year: this.yearArray[item]
+              year: this.yearArray[item],
+//              sDates: this.selectedDates
             })
           }
         })

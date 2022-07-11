@@ -11,34 +11,63 @@ export struct CalendarCellView {
   notInMonthTextColor: ResourceColor = "#787a7d"
   inMonth: boolean = true
   isCustom: boolean = false
-  selectedDate: number | Set<number> = 0
+  selectedDate: number | number [] = 0
   selectedTextColor: ResourceColor  = "#fafafa"
   selectedBackgroundColor: ResourceColor= "#3a4352"
   getBackgroundColor = (date: number): ResourceColor => {
-    if (this.inMonth) {
-      if (this.selectedDate != 0 && this.selectedDate == date) {
-        return this.selectedBackgroundColor
+    if (typeof (this.selectedDate) === 'number') {
+      if (this.inMonth) {
+        if (this.selectedDate != 0 && this.selectedDate == date) {
+          return this.selectedBackgroundColor
+        }
+        else {
+          return this.inMonthColor
+        }
       }
       else {
-        return this.inMonthColor
+        return this.notInMonthColor
       }
     }
     else {
-      return this.notInMonthColor
+      if (this.inMonth) {
+        if (this.selectedDate.length != 0 && this.selectedDate.find(x => x == date) != undefined) {
+          return this.selectedBackgroundColor
+        }
+        else {
+          return this.inMonthColor
+        }
+      }
+      else {
+        return this.notInMonthColor
+      }
     }
   }
   getTextColor = (date: number): ResourceColor => {
-
-    if (this.inMonth) {
-      if (this.selectedDate != 0 && this.selectedDate == date) {
-        return this.selectedTextColor
+    if (typeof (this.selectedDate) === 'number') {
+      if (this.inMonth) {
+        if (this.selectedDate != 0 && this.selectedDate == date) {
+          return this.selectedTextColor
+        }
+        else {
+          return this.inMonthTextColor
+        }
       }
       else {
-        return this.inMonthTextColor
+        return this.notInMonthTextColor
       }
     }
     else {
-      return this.notInMonthTextColor
+      if (this.inMonth) {
+        if (this.selectedDate.length != 0 && this.selectedDate.find(x => x == date) != undefined) {
+          return this.selectedTextColor
+        }
+        else {
+          return this.inMonthTextColor
+        }
+      }
+      else {
+        return this.notInMonthTextColor
+      }
     }
   }
 
