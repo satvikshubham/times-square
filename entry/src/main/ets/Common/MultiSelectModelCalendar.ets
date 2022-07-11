@@ -31,6 +31,6 @@ export struct MultiSelectModelCalendar {
           }
         })
       }
-    }.padding('20vp')
+    }
   }
 }

@@ -62,5 +62,42 @@ export class Calendar {
       }
       return { yearArray: Calendar.listOfYear, monthArray: Calendar.listOfMonths }
     }
+
+    getDaysInRange = (startDate: Date, endDate: Date): any => {
+      let days: string[] = [];
+      let inMonthArray: boolean[] = [];
+      let startDateYear = startDate.getFullYear();
+      let startDateMonth = startDate.getMonth();
+      let startDateDay = startDate.getDate();
+      let endDateYear = endDate.getFullYear();
+      let endDateMonth = endDate.getMonth();
+      let endDateDay = endDate.getDate();
+      let startDateFirstDay = Calendar.getFirstDay(startDateYear, startDateMonth);
+      let endDateFirstDay = Calendar.getFirstDay(endDateYear, endDateMonth);
+      let startDateDaysInMonth = Calendar.ar[startDateMonth];
+      if (startDateMonth == 2 && Calendar.isLeapYear(startDateYear)) {
+        startDateDaysInMonth = 29;
+      }
+      let endDateDaysInMonth = Calendar.ar[endDateMonth];
+      if (endDateMonth == 2 && Calendar.isLeapYear(endDateYear)) {
+        endDateDaysInMonth = 29;
+      }
+      for (let i = 0; i < startDateFirstDay; i++) {
+        days.push((startDateDaysInMonth - startDateFirstDay + i + 1).toString());
+        inMonthArray.push(false)
+      }
+      for (let i = 1; i <= endDateDay; i++) {
+        days.push(i.toString());
+        inMonthArray.push(true)
+      }
+      if (days.length % 7 != 0) {
+        let totalNoOfDaysToAdd = 7 - (days.length % 7);
+        for (let i = 1; i <= totalNoOfDaysToAdd; i++) {
+          days.push(i.toString());
+          inMonthArray.push(false)
+        }
+      }
+      return { days, inMonthArray };
+    }
   }
   

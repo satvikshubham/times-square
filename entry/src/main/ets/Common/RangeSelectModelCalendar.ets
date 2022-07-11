@@ -1,9 +1,9 @@
 import { Calendar } from './Calendar'
-import { SingleSelectCalendar } from './SingleSelect'
+import { RangeSelectCalendar } from './RangeSelect'
 
 @Entry
 @Component
-export struct SingleSelectModelCalendar {
+export struct RangeSelectModelCalendar {
   currentMonth = new Date().getMonth()
   currentYear = new Date().getFullYear()
   monthArray: number[]
@@ -11,7 +11,6 @@ export struct SingleSelectModelCalendar {
   indexArray: number [] = Array.apply(null, Array(23)).map(function (item, i) {
     return i
   })
-//  selectedDateFinal: number[][][]= [][][]
 
   aboutToAppear() {
     var temp = Calendar.getCalendarForYear(this.currentMonth, this.currentYear)
@@ -24,7 +23,7 @@ export struct SingleSelectModelCalendar {
       List({ initialIndex: 13 }) {
         ForEach(this.indexArray, (item) => {
           ListItem() {
-            SingleSelectCalendar({
+            RangeSelectCalendar({
               month: this.monthArray[item],
               year: this.yearArray[item]
             })

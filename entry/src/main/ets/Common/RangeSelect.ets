@@ -3,25 +3,42 @@ import { Calendar } from './Calendar'
 
 @Entry
 @Component
-export struct SingleSelectCalendar {
+export struct RangeSelectCalendar {
   year: number = 2021
   month: number = 6
   monthDays: string [] = []
   inMonthArray: boolean []= []
-  @State selectedDate: number = 0
-//  selectedDateFinal : number [][][] = [][][]
-  aboutToAppear() {
-    var temp = Calendar.getDaysArray(this.year, this.month)
-    this.monthDays = temp.days
-    this.inMonthArray = temp.inMonthArray
-  }
-
+  @State startDate: Date = new Date()
+  @State endDate: Date = new Date()
+  @State startSelected: boolean = false
   months: string [] = ["January", "February",
   "March", "April", "May", "June", "July", "August",
   "September", "October", "November", "December"]
   weekDays: string [] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
   textSize: number | string | Resource = '14fp'
 
+  aboutToAppear() {
+    var temp = Calendar.getDaysArray(this.year, this.month)
+    this.monthDays = temp.days
+    this.inMonthArray = temp.inMonthArray
+  }
+
+  isCorrect = (sDate : Date, eDate : Date) : boolean => {
+    if (sDate< eDate){
+      return true
+    }
+    else{
+      return false
+    }
+  }
+  getDays = (sDate : Date, eDate : Date) : number[] => {
+    if (this.isCorrect(sDate,eDate)){
+      
+    }
+    else{
+      return []
+    }
+  }
   build() {
     Column() {
       Text(this.months[this.month-1] + " " + this.year).fontSize(this.textSize).alignSelf(ItemAlign.Start)
@@ -38,12 +55,10 @@ export struct SingleSelectCalendar {
               date: item,
               textSize: '15fp',
               inMonth: this.inMonthArray[index],
-              selectedDate: this.selectedDate
             })
           }.padding('2vp')
           .onClick(() => {
             console.log(item)
-            this.selectedDate = item
           })
         })
       }
