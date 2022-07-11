@@ -31,14 +31,21 @@ export struct RangeSelectCalendar {
       return false
     }
   }
-  getDays = (sDate : Date, eDate : Date) : number[] => {
+  getDays = (sDate : Date, eDate : Date) : number[][] => {
     if (this.isCorrect(sDate,eDate)){
-      
+      const date = new Date(sDate.getTime())
+      const dates : number [][] = []
+      while (date<=eDate){
+        dates.push([date.getDate(), date.getMonth(), date.getFullYear()]);
+        date.setDate(date.getDate() + 1);
+      }
+      return dates
     }
     else{
       return []
     }
   }
+
   build() {
     Column() {
       Text(this.months[this.month-1] + " " + this.year).fontSize(this.textSize).alignSelf(ItemAlign.Start)
@@ -59,6 +66,14 @@ export struct RangeSelectCalendar {
           }.padding('2vp')
           .onClick(() => {
             console.log(item)
+            if (!this.startSelected){
+              this.startDate = new Date(this.year,this.month-1, item)
+              this.startSelected = true;
+            }
+            if (this.startSelected){
+              this.endDate = new Date(this.year, this.month-1, item)
+            }
+            console.log(this.getDays(this.startDate, this.endDate).toString())
           })
         })
       }
