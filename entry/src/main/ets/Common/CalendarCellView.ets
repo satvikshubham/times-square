@@ -11,7 +11,7 @@ export struct CalendarCellView {
   notInMonthTextColor: ResourceColor = "#787a7d"
   inMonth: boolean = true
   isCustom: boolean = false
-  selectedDate: number | number [] = 0
+  selectedDate: number | number []  = 0
   selectedTextColor: ResourceColor  = "#fafafa"
   selectedBackgroundColor: ResourceColor= "#3a4352"
   getBackgroundColor = (date: number): ResourceColor => {

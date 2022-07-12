@@ -30,6 +30,6 @@ export struct RangeSelectModelCalendar {
           }
         })
       }
-    }
+    }.padding('20vp')
   }
 }
