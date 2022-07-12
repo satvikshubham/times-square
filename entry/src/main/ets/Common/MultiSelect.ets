@@ -8,8 +8,7 @@ export struct MultiSelectCalendar {
   month: number = 6
   monthDays: number [] = []
   inMonthArray: boolean []= []
-  @State selectedDate: number = 0
-  @State sDates : number [] = []
+  @State selectedDate: number [][] = []
 
   aboutToAppear() {
     var temp = Calendar.getDaysArray(this.year, this.month)
@@ -39,11 +38,11 @@ export struct MultiSelectCalendar {
               date: item,
               textSize: '15fp',
               inMonth: this.inMonthArray[index],
-              selectedDate: this.sDates
+              selectedDate: this.selectedDate
             })
           }.padding(2)
           .onClick(() => {
-            this.sDates.push(item)
+            this.selectedDate.push([item, this.month, this.year])
           })
         })
       }

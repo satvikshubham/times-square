@@ -11,7 +11,6 @@ export struct SingleSelectModelCalendar {
   indexArray: number [] = Array.apply(null, Array(23)).map(function (item, i) {
     return i
   })
-//  selectedDateFinal: number[][][]= [][][]
 
   aboutToAppear() {
     var temp = Calendar.getCalendarForYear(this.currentMonth, this.currentYear)

@@ -9,7 +9,8 @@ export struct SingleSelectCalendar {
   monthDays: string [] = []
   inMonthArray: boolean []= []
   @State selectedDate: number = 0
-//  selectedDateFinal : number [][][] = [][][]
+  @State selectedDateFinal: number [][] = []
+
   aboutToAppear() {
     var temp = Calendar.getDaysArray(this.year, this.month)
     this.monthDays = temp.days
@@ -38,12 +39,18 @@ export struct SingleSelectCalendar {
               date: item,
               textSize: '15fp',
               inMonth: this.inMonthArray[index],
-              selectedDate: this.selectedDate
+              selectedDate: this.selectedDateFinal
             })
           }.padding('2vp')
           .onClick(() => {
             console.log(item)
-            this.selectedDate = item
+            if (this.selectedDateFinal.length ==0){
+              this.selectedDateFinal.push([item, this.month-1, this.year])
+            }
+            else{
+              this.selectedDateFinal.pop()
+              this.selectedDateFinal.push([item, this.month-1, this.year])
+            }
           })
         })
       }
