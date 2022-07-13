@@ -8,8 +8,8 @@ export struct RangeSelectCalendar {
   month: number = 6
   monthDays: string [] = []
   inMonthArray: boolean []= []
-  @State startDate: Date = new Date()
-  @State endDate: Date = new Date()
+  @State startDate: Date = undefined
+  @State endDate: Date = undefined
   @State startSelected: boolean = false
   months: string [] = ["January", "February",
   "March", "April", "May", "June", "July", "August",
@@ -25,6 +25,9 @@ export struct RangeSelectCalendar {
   }
 
   isCorrect = (sDate: Date, eDate: Date): boolean => {
+    if (sDate == undefined || eDate == undefined) {
+      return false
+    }
     if (sDate < eDate) {
       return true
     }
@@ -34,6 +37,7 @@ export struct RangeSelectCalendar {
   }
   getDays = (sDate: Date, eDate: Date): number[][] => {
     if (this.isCorrect(sDate, eDate)) {
+      sDate.setDate(sDate.getDate() + 1)
       const date = new Date(sDate.getTime())
       const dates: number [][] = []
       while (date <= eDate) {
@@ -61,28 +65,37 @@ export struct RangeSelectCalendar {
           GridItem() {
             CalendarCellView({
               date: item,
+              month: this.month -1,
+              year : this.year,
               textSize: '15fp',
               inMonth: this.inMonthArray[index],
+              selectedDate: this.rangeOfDates
             })
           }.padding('2vp')
           .onClick(() => {
             console.log(item)
             if (!this.startSelected) {
-              this.startDate = new Date(this.year, this.month - 1, item)
-              this.startSelected = true;
+              this.rangeOfDates = []
+              this.startDate = new Date(this.year, this.month, item)
+              this.startSelected = true
+              this.rangeOfDates.push([item, this.month -1, this.year])
             }
-            if (this.startSelected) {
-              this.endDate = new Date(this.year, this.month - 1, item)
-            }
-            if (this.isCorrect(this.startDate, this.endDate)) {
-              let validDays: number [][] = this.getDays(this.startDate, this.endDate)
-              for (let i = 0;i < validDays.length; i++) {
-                this.rangeOfDates.push([validDays[i][0], validDays[i][1], validDays[i][2]])
+            else if (this.startSelected) {
+              this.endDate = new Date(this.year, this.month, item)
+              if (this.isCorrect(this.startDate, this.endDate)) {
+                let validDays = this.getDays(this.startDate, this.endDate)
+                for (let i = 0; i < validDays.length; i++) {
+                  this.rangeOfDates.push([validDays[i][0], validDays[i][1]-1, validDays[i][2]])
+                }
+                // maybe maybe not
+                this.startSelected = false
               }
-            }
-            else {
-              this.startDate = this.endDate
-              this.endDate = undefined
+              else{
+                console.log("hi")
+                this.startDate = this.endDate
+                this.rangeOfDates = []
+                this.rangeOfDates.push([item, this.month -1, this.year])
+              }
             }
             console.log(this.rangeOfDates.toString())
           })
