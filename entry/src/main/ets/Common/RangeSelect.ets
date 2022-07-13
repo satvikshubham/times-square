@@ -41,7 +41,7 @@ export struct RangeSelectCalendar {
       const date = new Date(sDate.getTime())
       const dates: number [][] = []
       while (date <= eDate) {
-        dates.push([date.getDate(), date.getMonth(), date.getFullYear()]);
+        dates.push([date.getDate(), date.getMonth()+1, date.getFullYear()]);
         date.setDate(date.getDate() + 1);
       }
       return dates
@@ -76,22 +76,20 @@ export struct RangeSelectCalendar {
             console.log(item)
             if (!this.startSelected) {
               this.rangeOfDates = []
-              this.startDate = new Date(this.year, this.month, item)
+              this.startDate = new Date(this.year, this.month -1, item)
               this.startSelected = true
               this.rangeOfDates.push([item, this.month -1, this.year])
             }
             else if (this.startSelected) {
-              this.endDate = new Date(this.year, this.month, item)
+              this.endDate = new Date(this.year, this.month -1, item)
               if (this.isCorrect(this.startDate, this.endDate)) {
                 let validDays = this.getDays(this.startDate, this.endDate)
                 for (let i = 0; i < validDays.length; i++) {
                   this.rangeOfDates.push([validDays[i][0], validDays[i][1]-1, validDays[i][2]])
                 }
-                // maybe maybe not
                 this.startSelected = false
               }
               else{
-                console.log("hi")
                 this.startDate = this.endDate
                 this.rangeOfDates = []
                 this.rangeOfDates.push([item, this.month -1, this.year])
