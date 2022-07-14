@@ -27,13 +27,11 @@ export struct MultiSelectCalendar {
     let d = date.getDate()
     let ind = this.selectedDatesFinal.findIndex(x => x[0] == d[0] && x[1] == d[1] && x[2] == d[2])
     if (ind != -1){
-      console.log(ind + "")
       this.selectedDatesFinal.splice(ind,1)
     }
     else{
       this.selectedDatesFinal.push(d)
     }
-    console.log(JSON.stringify(this.selectedDatesFinal))
   }
 
   build() {

@@ -11,6 +11,7 @@ export struct RangeSelectModelCalendar {
   indexArray: number [] = Array.apply(null, Array(23)).map(function (item, i) {
     return i
   })
+  @State selectedRangeOfDates : number [][] = []
 
   aboutToAppear() {
     var temp = Calendar.getCalendarForYear(this.currentMonth, this.currentYear)
@@ -25,11 +26,12 @@ export struct RangeSelectModelCalendar {
           ListItem() {
             RangeSelectCalendar({
               month: this.monthArray[item],
-              year: this.yearArray[item]
+              year: this.yearArray[item],
+              rangeOfDates: $selectedRangeOfDates
             })
           }
         })
       }
-    }.padding('20vp')
+    }
   }
 }

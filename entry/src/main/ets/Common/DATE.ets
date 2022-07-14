@@ -4,23 +4,34 @@ export class DATE {
   private year: number;
   private date: number[] = []
 
-  setDate = (day: number, month: number, year: number): void => {
-    if (this.date.length == 0) {
-      this.date.push(day)
-      this.date.push(month)
-      this.date.push(year)
-    }
-    else {
-      this.date.pop()
-      this.date.pop()
-      this.date.pop()
-      this.date.push(day)
-      this.date.push(month)
-      this.date.push(year)
-    }
+  constructor(day?: number, month?: number, year?: number) {
+    this.day = day;
+    this.month = month;
+    this.year = year;
   }
 
+  setDate = (day: number, month: number, year: number): void => {
+    if (this.date.length == 0) {
+      this.day = day
+      this.month = month
+      this.year = year
+    }
+    else {
+      this.day = day
+      this.month = month
+      this.year = year
+    }
+  }
   getDate = (): number [] => {
-    return this.date
+    return [this.day, this.month, this.year]
+  }
+  getDay = () : number =>{
+    return this.day
+  }
+  getMonth = () : number =>{
+    return this.month
+  }
+  getYear = () : number =>{
+    return this.year
   }
 }
