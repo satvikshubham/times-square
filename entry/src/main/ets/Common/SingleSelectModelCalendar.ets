@@ -12,6 +12,8 @@ export struct SingleSelectModelCalendar {
     return i
   })
 
+  @State selectedDateFinal : number[][] = []
+
   aboutToAppear() {
     var temp = Calendar.getCalendarForYear(this.currentMonth, this.currentYear)
     this.monthArray = temp.listOfMonths
@@ -25,7 +27,8 @@ export struct SingleSelectModelCalendar {
           ListItem() {
             SingleSelectCalendar({
               month: this.monthArray[item],
-              year: this.yearArray[item]
+              year: this.yearArray[item],
+              selectedDateFinal: $selectedDateFinal
             })
           }
         })

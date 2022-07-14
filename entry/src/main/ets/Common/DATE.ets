@@ -6,17 +6,17 @@ export class DATE {
 
   setDate = (day: number, month: number, year: number): void => {
     if (this.date.length == 0) {
-      this.date.push(year)
-      this.date.push(month)
       this.date.push(day)
+      this.date.push(month)
+      this.date.push(year)
     }
-    else{
+    else {
       this.date.pop()
       this.date.pop()
       this.date.pop()
-      this.date.push(year)
-      this.date.push(month)
       this.date.push(day)
+      this.date.push(month)
+      this.date.push(year)
     }
   }
 

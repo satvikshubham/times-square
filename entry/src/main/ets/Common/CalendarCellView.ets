@@ -4,19 +4,19 @@ export struct CalendarCellView {
   month: number = 0
   year: number = 0
   d: number [] = []
-
-  // To be decided later
+  @Link selectedDate: number [][]
+  // Attributes
   dayIcon: Resource
   textSize: number | string | Resource = '20fp'
   inMonthColor: ResourceColor = "#ebf5ef"
   notInMonthColor: ResourceColor = "#d0d9d4"
   inMonthTextColor: ResourceColor = "#303133"
   notInMonthTextColor: ResourceColor = "#787a7d"
-  inMonth: boolean = true
-  isCustom: boolean = false
-  selectedDate: number [][]  = []
   selectedTextColor: ResourceColor  = "#fafafa"
   selectedBackgroundColor: ResourceColor= "#3a4352"
+  // Logic
+  inMonth: boolean = true
+  isCustom: boolean = false
 
   aboutToAppear() {
     this.d.push(this.date)
@@ -37,6 +37,7 @@ export struct CalendarCellView {
       return this.notInMonthColor
     }
   }
+
   getTextColor = (date: number[]): ResourceColor => {
     if (this.inMonth) {
       if (this.selectedDate.length != 0 && this.selectedDate.find(x => x[0] == date[0] && x[1] == date[1] && x[2] == date[2])) {

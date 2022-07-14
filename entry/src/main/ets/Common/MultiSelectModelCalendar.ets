@@ -8,7 +8,7 @@ export struct MultiSelectModelCalendar {
   currentYear = new Date().getFullYear()
   monthArray: number[]
   yearArray: number []
-
+  @State selectedDatesFinal : number [][] = []
   indexArray: number [] = Array.apply(null, Array(23)).map(function (item, i) {
     return i
   })
@@ -26,7 +26,7 @@ export struct MultiSelectModelCalendar {
             MultiSelectCalendar({
               month: this.monthArray[item],
               year: this.yearArray[item],
-//              sDates: this.selectedDates
+              selectedDatesFinal: $selectedDatesFinal
             })
           }
         })

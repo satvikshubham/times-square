@@ -2,14 +2,13 @@ import { CalendarCellView } from './CalendarCellView'
 import { Calendar } from './Calendar'
 import { DATE } from './DATE'
 
-@Entry
 @Component
 export struct SingleSelectCalendar {
   year: number = 2021
   month: number = 6
   monthDays: string [] = []
   inMonthArray: boolean []= []
-  @State selectedDateFinal: number [][] = []
+  @Link selectedDateFinal: number [][]
   dateSelected: DATE = new DATE()
 
   aboutToAppear() {
@@ -25,8 +24,7 @@ export struct SingleSelectCalendar {
   textSize: number | string | Resource = '14fp'
 
   setDate = (d: number []): void => {
-    this.dateSelected.setDate(d[2], d[1], d[0])
-    console.log(JSON.stringify(this.dateSelected))
+    this.dateSelected.setDate(d[0], d[1], d[2])
   }
 
   push = (): void => {
@@ -37,7 +35,6 @@ export struct SingleSelectCalendar {
       this.selectedDateFinal.pop()
       this.selectedDateFinal.push(this.dateSelected.getDate())
     }
-    console.log(JSON.stringify(this.selectedDateFinal))
   }
 
   build() {
