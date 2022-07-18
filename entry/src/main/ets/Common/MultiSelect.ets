@@ -52,7 +52,7 @@ export struct MultiSelectCalendar {
               year : this.year,
               textSize: '15fp',
               inMonth: this.inMonthArray[index],
-              selectedDate: $selectedDatesFinal
+              selectedDate: $selectedDatesFinal,
             })
           }.padding('2vp')
           .onClick(() => {

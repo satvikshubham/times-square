@@ -37,7 +37,6 @@ export struct CalendarCellView {
       return this.notInMonthColor
     }
   }
-
   getTextColor = (date: number[]): ResourceColor => {
     if (this.inMonth) {
       if (this.selectedDate.length != 0 && this.selectedDate.find(x => x[0] == date[0] && x[1] == date[1] && x[2] == date[2])) {

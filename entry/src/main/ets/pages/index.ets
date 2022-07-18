@@ -7,153 +7,155 @@ import { RangeSelectModelCalendar } from '../Common/RangeSelectModelCalendar'
 struct Index {
   scroller: Scroller = new Scroller()
   @State buttonType: string = "Single"
-  unselectedButtonColor : ResourceColor = ""
-  selectedButtonColor : ResourceColor = ""
-  unselectedButtonTextColor : ResourceColor = ""
-  selectedButtonTextColor : ResourceColor = ""
-
-  getButtonColor=(isSelected : boolean): ResourceColor => {
-    if (isSelected){
+  unselectedButtonColor: ResourceColor = "#ccc6b6"
+  selectedButtonColor: ResourceColor = "#403927"
+  unselectedButtonTextColor: ResourceColor = "#0c1f1a"
+  selectedButtonTextColor: ResourceColor = "#f5f3ed"
+  getButtonColor= (buttonType: string, buttonName: string): ResourceColor => {
+    if (buttonType === buttonName) {
       return this.selectedButtonColor
     }
-    return this.unselectedButtonColor
+    else {
+      return this.unselectedButtonColor
+    }
   }
-  getButtonTextColor = (isSelected: boolean) : ResourceColor =>{
-    if (isSelected){
+  getButtonTextColor = (buttonType: string, buttonName: string): ResourceColor => {
+    if (buttonType === buttonName) {
       return this.selectedButtonTextColor
     }
-    return this.unselectedButtonTextColor
+    else {
+      return this.unselectedButtonTextColor
+    }
   }
+
   build() {
     Column() {
       Scroll(this.scroller) {
-        Row({ space: '5vp' }) {
-          Toggle({ type: ToggleType.Button, isOn: true}) {
-            Text('Single').padding({ left: 12, right: 12 }).fontSize('20fp')
-          }.height('40vp')
-          .selectedColor(0x39a2db)
-          .onChange((isOn: boolean) => {
+        Row({ space: '10vp' }) {
+          Button({ type: ButtonType.Normal }) {
+            Text('Single').fontSize(20)
+              .padding({ left: '20vp', right: '20vp' })
+              .fontColor(this.getButtonTextColor(this.buttonType, "Single"))
+          }
+          .onClick(() => {
             this.buttonType = "Single"
           })
-          Toggle({ type: ToggleType.Button, isOn: false}) {
-            Text('Multi').padding({ left: 12, right: 12 }).fontSize('20fp')
-          }.height('40vp')
-          .selectedColor(0x39a2db)
-          .onChange((isOn: boolean) => {
+          .shadow({ radius: 10 })
+          .backgroundColor(this.getButtonColor(this.buttonType, "Single"))
+
+          Button({ type: ButtonType.Normal }) {
+            Text('Multi').fontSize(20)
+              .padding({ left: '20vp', right: '20vp' })
+              .fontColor(this.getButtonTextColor(this.buttonType, "Multi"))
+
+
+          }
+          .onClick(() => {
             this.buttonType = "Multi"
           })
-          Toggle({ type: ToggleType.Button, isOn: false}) {
-            Text('Range').padding({ left: 12, right: 12 }).fontSize('20fp')
-          }.height('40vp')
-          .selectedColor(0x39a2db)
-          .onChange((isOn: boolean) => {
+          .shadow({ radius: 10 })
+          .backgroundColor(this.getButtonColor(this.buttonType, "Multi"))
+
+          Button({ type: ButtonType.Normal }) {
+            Text('Range').fontSize(20)
+              .padding({ left: '20vp', right: '20vp' })
+              .fontColor(this.getButtonTextColor(this.buttonType, "Range"))
+          }
+          .onClick(() => {
             this.buttonType = "Range"
           })
-          Toggle({ type: ToggleType.Button, isOn: false}) {
-            Text('DisplayOnly').padding({ left: 12, right: 12 }).fontSize('20fp')
-          }.height('40vp')
-          .selectedColor(0x39a2db)
-          .onChange((isOn: boolean) => {
+          .shadow({ radius: 10 })
+          .backgroundColor(this.getButtonColor(this.buttonType, "Range"))
+
+          Button({ type: ButtonType.Normal }) {
+            Text('DisplayOnly').fontSize(20)
+              .padding({ left: '20vp', right: '20vp' })
+              .fontColor(this.getButtonTextColor(this.buttonType, "DisplayOnly"))
+          }
+          .onClick(() => {
             this.buttonType = "DisplayOnly"
           })
-          Toggle({ type: ToggleType.Button, isOn: false}) {
-            Text('Dialog').padding({ left: 12, right: 12 }).fontSize('20fp')
-          }.height('40vp')
-          .selectedColor(0x39a2db)
-          .onChange((isOn: boolean) => {
+          .shadow({ radius: 10 })
+          .backgroundColor(this.getButtonColor(this.buttonType, "DisplayOnly"))
+
+          Button({ type: ButtonType.Normal }) {
+            Text('Dialog').fontSize(20)
+              .padding({ left: '20vp', right: '20vp' })
+              .fontColor(this.getButtonTextColor(this.buttonType, "Dialog"))
+          }
+          .onClick(() => {
             this.buttonType = "Dialog"
           })
-          Toggle({ type: ToggleType.Button, isOn: false}) {
-            Text('Customized').padding({ left: 12, right: 12 }).fontSize('20fp')
-          }.height('40vp')
-          .selectedColor(0x39a2db)
-          .onChange((isOn: boolean) => {
+          .shadow({ radius: 10 })
+          .backgroundColor(this.getButtonColor(this.buttonType, "Dialog"))
+
+          Button({ type: ButtonType.Normal }) {
+            Text('Customized').fontSize(20)
+              .padding({ left: '20vp', right: '20vp' })
+              .fontColor(this.getButtonTextColor(this.buttonType, "Customized"))
+          }
+          .onClick(() => {
             this.buttonType = "Customized"
           })
-          Toggle({ type: ToggleType.Button, isOn: false}) {
-            Text('Decorator').padding({ left: 12, right: 12 }).fontSize('20fp')
-          }.height('40vp')
-          .selectedColor(0x39a2db)
-          .onChange((isOn: boolean) => {
+          .shadow({ radius: 10 })
+          .backgroundColor(this.getButtonColor(this.buttonType, "Customized"))
+
+          Button({ type: ButtonType.Normal }) {
+            Text('Decorator').fontSize(20)
+              .padding({ left: '20vp', right: '20vp' })
+              .fontColor(this.getButtonTextColor(this.buttonType, "Decorator"))
+          }
+          .onClick(() => {
             this.buttonType = "Decorator"
           })
-          Toggle({ type: ToggleType.Button, isOn: false}) {
-            Text('Arabic').padding({ left: 12, right: 12 }).fontSize('20fp')
-          }.height('40vp')
-          .selectedColor(0x39a2db)
-          .onChange((isOn: boolean) => {
+          .shadow({ radius: 10 })
+          .backgroundColor(this.getButtonColor(this.buttonType, "Decorator"))
+
+          Button({ type: ButtonType.Normal }) {
+            Text('Arabic').fontSize(20)
+              .padding({ left: '20vp', right: '20vp' })
+              .fontColor(this.getButtonTextColor(this.buttonType, "Arabic"))
+          }
+          .onClick(() => {
             this.buttonType = "Arabic"
           })
-          Toggle({ type: ToggleType.Button, isOn: false}) {
-            Text('Arabic with digits').padding({ left: 12, right: 12 }).fontSize('20fp')
-          }.height('40vp')
-          .selectedColor(0x39a2db)
-          .onChange((isOn: boolean) => {
+          .shadow({ radius: 10 })
+          .backgroundColor(this.getButtonColor(this.buttonType, "Arabic"))
+
+          Button({ type: ButtonType.Normal }) {
+            Text('Arabic with digits').fontSize(20)
+              .padding({ left: '20vp', right: '20vp' })
+              .fontColor(this.getButtonTextColor(this.buttonType, "Arabic with digits"))
+          }
+          .onClick(() => {
             this.buttonType = "Arabic with digits"
           })
-          Toggle({ type: ToggleType.Button, isOn: false}) {
-            Text('Custom View').padding({ left: 12, right: 12 }).fontSize('20fp')
-          }.height('40vp')
-          .selectedColor(0x39a2db)
-          .onChange((isOn: boolean) => {
+          .shadow({ radius: 10 })
+          .backgroundColor(this.getButtonColor(this.buttonType, "Arabic with digits"))
+
+          Button({ type: ButtonType.Normal }) {
+            Text('Custom View').fontSize(20)
+              .padding({ left: '20vp', right: '20vp' })
+              .fontColor(this.getButtonTextColor(this.buttonType, "Custom View"))
+          }
+          .onClick(() => {
             this.buttonType = "Custom View"
           })
-//          Button('Single').type(ButtonType.Normal)
-//            .onClick(() => {
-//              this.buttonType = "Single"
-//            })
-//          Button('Multi').type(ButtonType.Normal)
-//            .onClick(() => {
-//              this.buttonType = "Multi"
-//            })
-//          Button('Range').type(ButtonType.Normal)
-//            .onClick(() => {
-//              this.buttonType = "Range"
-//            })
-//          Button('DisplayOnly').type(ButtonType.Normal)
-//            .onClick(() => {
-//              this.buttonType = "DisplayOnly"
-//            })
-//          Button('Dialog').type(ButtonType.Normal)
-//            .onClick(() => {
-//              this.buttonType = "Dialog"
-//            })
-//          Button('Customized').type(ButtonType.Normal)
-//            .onClick(() => {
-//              this.buttonType = "Customized"
-//            })
-//          Button('Decorator').type(ButtonType.Normal)
-//            .onClick(() => {
-//              this.buttonType = "Decorator"
-//            })
-//          Button('Arabic').type(ButtonType.Normal)
-//            .onClick(() => {
-//              this.buttonType = "Arabic"
-//            })
-//          Button('Arabic with digits').type(ButtonType.Normal)
-//            .onClick(() => {
-//              this.buttonType = "Arabic with digits"
-//            })
-//          Button('Custom View').type(ButtonType.Normal)
-//            .onClick(() => {
-//              this.buttonType = "Custom View"
-//            })
+          .shadow({ radius: 10 })
+          .backgroundColor(this.getButtonColor(this.buttonType, "Custom View"))
+
         }
       }.padding({ bottom: '10vp' })
-      if (this.buttonType === 'Single'){
-        SingleSelectModelCalendar({
+      .scrollable(ScrollDirection.Horizontal)
 
-        })
+      if (this.buttonType === 'Single') {
+        SingleSelectModelCalendar({})
       }
-      if (this.buttonType === 'Multi'){
-        MultiSelectModelCalendar({
-
-        })
+      if (this.buttonType === 'Multi') {
+        MultiSelectModelCalendar({})
       }
-      if (this.buttonType === 'Range'){
-        RangeSelectModelCalendar({
-
-        })
+      if (this.buttonType === 'Range') {
+        RangeSelectModelCalendar({})
       }
     }.padding('20vp')
   }

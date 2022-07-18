@@ -82,7 +82,7 @@ export struct RangeSelectCalendar {
               year: this.year,
               textSize: '15fp',
               inMonth: this.inMonthArray[index],
-              selectedDate: $rangeOfDates
+              selectedDate: $rangeOfDates,
             })
           }.padding('2vp')
           .onClick(() => {

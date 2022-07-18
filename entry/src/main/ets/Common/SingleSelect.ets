@@ -55,7 +55,7 @@ export struct SingleSelectCalendar {
               year: this.year,
               textSize: '15fp',
               inMonth: this.inMonthArray[index],
-              selectedDate: $selectedDateFinal
+              selectedDate: $selectedDateFinal,
             })
           }.padding('2vp')
           .onClick(() => {
