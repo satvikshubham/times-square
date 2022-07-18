@@ -1,6 +1,7 @@
 import { SingleSelectModelCalendar } from '../Common/SingleSelectModelCalendar'
 import { MultiSelectModelCalendar } from '../Common/MultiSelectModelCalendar'
 import { RangeSelectModelCalendar } from '../Common/RangeSelectModelCalendar'
+import { DisplayOnlyModelCalendar} from '../Common/DisplayOnlyModelCalendar'
 
 @Entry
 @Component
@@ -33,7 +34,7 @@ struct Index {
       Scroll(this.scroller) {
         Row({ space: '10vp' }) {
           Button({ type: ButtonType.Normal }) {
-            Text('Single').fontSize(20)
+            Text('Single').fontSize('20fp')
               .padding({ left: '20vp', right: '20vp' })
               .fontColor(this.getButtonTextColor(this.buttonType, "Single"))
           }
@@ -44,7 +45,7 @@ struct Index {
           .backgroundColor(this.getButtonColor(this.buttonType, "Single"))
 
           Button({ type: ButtonType.Normal }) {
-            Text('Multi').fontSize(20)
+            Text('Multi').fontSize('20fp')
               .padding({ left: '20vp', right: '20vp' })
               .fontColor(this.getButtonTextColor(this.buttonType, "Multi"))
 
@@ -57,7 +58,7 @@ struct Index {
           .backgroundColor(this.getButtonColor(this.buttonType, "Multi"))
 
           Button({ type: ButtonType.Normal }) {
-            Text('Range').fontSize(20)
+            Text('Range').fontSize('20fp')
               .padding({ left: '20vp', right: '20vp' })
               .fontColor(this.getButtonTextColor(this.buttonType, "Range"))
           }
@@ -68,7 +69,7 @@ struct Index {
           .backgroundColor(this.getButtonColor(this.buttonType, "Range"))
 
           Button({ type: ButtonType.Normal }) {
-            Text('DisplayOnly').fontSize(20)
+            Text('DisplayOnly').fontSize('20fp')
               .padding({ left: '20vp', right: '20vp' })
               .fontColor(this.getButtonTextColor(this.buttonType, "DisplayOnly"))
           }
@@ -79,7 +80,7 @@ struct Index {
           .backgroundColor(this.getButtonColor(this.buttonType, "DisplayOnly"))
 
           Button({ type: ButtonType.Normal }) {
-            Text('Dialog').fontSize(20)
+            Text('Dialog').fontSize('20fp')
               .padding({ left: '20vp', right: '20vp' })
               .fontColor(this.getButtonTextColor(this.buttonType, "Dialog"))
           }
@@ -90,7 +91,7 @@ struct Index {
           .backgroundColor(this.getButtonColor(this.buttonType, "Dialog"))
 
           Button({ type: ButtonType.Normal }) {
-            Text('Customized').fontSize(20)
+            Text('Customized').fontSize('20fp')
               .padding({ left: '20vp', right: '20vp' })
               .fontColor(this.getButtonTextColor(this.buttonType, "Customized"))
           }
@@ -101,7 +102,7 @@ struct Index {
           .backgroundColor(this.getButtonColor(this.buttonType, "Customized"))
 
           Button({ type: ButtonType.Normal }) {
-            Text('Decorator').fontSize(20)
+            Text('Decorator').fontSize('20fp')
               .padding({ left: '20vp', right: '20vp' })
               .fontColor(this.getButtonTextColor(this.buttonType, "Decorator"))
           }
@@ -112,7 +113,7 @@ struct Index {
           .backgroundColor(this.getButtonColor(this.buttonType, "Decorator"))
 
           Button({ type: ButtonType.Normal }) {
-            Text('Arabic').fontSize(20)
+            Text('Arabic').fontSize('20fp')
               .padding({ left: '20vp', right: '20vp' })
               .fontColor(this.getButtonTextColor(this.buttonType, "Arabic"))
           }
@@ -123,7 +124,7 @@ struct Index {
           .backgroundColor(this.getButtonColor(this.buttonType, "Arabic"))
 
           Button({ type: ButtonType.Normal }) {
-            Text('Arabic with digits').fontSize(20)
+            Text('Arabic with digits').fontSize('20fp')
               .padding({ left: '20vp', right: '20vp' })
               .fontColor(this.getButtonTextColor(this.buttonType, "Arabic with digits"))
           }
@@ -134,7 +135,7 @@ struct Index {
           .backgroundColor(this.getButtonColor(this.buttonType, "Arabic with digits"))
 
           Button({ type: ButtonType.Normal }) {
-            Text('Custom View').fontSize(20)
+            Text('Custom View').fontSize('20fp')
               .padding({ left: '20vp', right: '20vp' })
               .fontColor(this.getButtonTextColor(this.buttonType, "Custom View"))
           }
@@ -156,6 +157,9 @@ struct Index {
       }
       if (this.buttonType === 'Range') {
         RangeSelectModelCalendar({})
+      }
+      if (this.buttonType === "DisplayOnly"){
+        DisplayOnlyModelCalendar({})
       }
     }.padding('20vp')
   }
