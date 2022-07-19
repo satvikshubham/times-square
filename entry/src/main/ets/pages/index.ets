@@ -1,5 +1,5 @@
 import { SingleSelectModelCalendar, DisplayOnlyModelCalendar, RangeSelectModelCalendar, MultiSelectModelCalendar
-} from '@ohos/times_square'
+, DialogModelCalendar} from '@ohos/times_square'
 
 @Entry
 @Component
@@ -158,6 +158,9 @@ struct Index {
       }
       if (this.buttonType === "DisplayOnly") {
         DisplayOnlyModelCalendar({})
+      }
+      if (this.buttonType === "Dialog"){
+        DialogModelCalendar({})
       }
     }.padding('20vp')
   }
