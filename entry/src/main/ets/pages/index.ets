@@ -1,7 +1,5 @@
-import { SingleSelectModelCalendar } from '../Common/SingleSelectModelCalendar'
-import { MultiSelectModelCalendar } from '../Common/MultiSelectModelCalendar'
-import { RangeSelectModelCalendar } from '../Common/RangeSelectModelCalendar'
-import { DisplayOnlyModelCalendar} from '../Common/DisplayOnlyModelCalendar'
+import { SingleSelectModelCalendar, DisplayOnlyModelCalendar, RangeSelectModelCalendar, MultiSelectModelCalendar
+} from '@ohos/times_square'
 
 @Entry
 @Component
@@ -158,7 +156,7 @@ struct Index {
       if (this.buttonType === 'Range') {
         RangeSelectModelCalendar({})
       }
-      if (this.buttonType === "DisplayOnly"){
+      if (this.buttonType === "DisplayOnly") {
         DisplayOnlyModelCalendar({})
       }
     }.padding('20vp')

@@ -22,6 +22,10 @@
           ]
         }
       ]
+    },
+    {
+      "name": "times_square",
+      "srcPath": "./times_square"
     }
   ]
 }
