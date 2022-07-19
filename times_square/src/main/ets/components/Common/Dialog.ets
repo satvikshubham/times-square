@@ -11,14 +11,14 @@ struct DialogBoxComponent {
         SingleSelectModelCalendar({})
         Row() {
           Button({ type: ButtonType.Normal }) {
-            Text("Dismiss").fontColor('#FFFFFF')
+            Text("Dismiss").fontColor('#FFFFFF').fontSize('20fp')
           }.onClick(()=>{
             this.controller.close()
           })
-          .width('60vp')
+          .width('100vp')
           .backgroundColor("#544343")
           .shadow({radius:3})
-        }.backgroundColor("#FFFFFF").width('100%')
+        }.backgroundColor("#FFFFFF").width('100%').height('60vp')
       }
     }.padding('20vp')
   }

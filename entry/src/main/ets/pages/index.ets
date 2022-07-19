@@ -1,5 +1,4 @@
-import { SingleSelectModelCalendar, DisplayOnlyModelCalendar, RangeSelectModelCalendar, MultiSelectModelCalendar
-, DialogModelCalendar} from '@ohos/times_square'
+import {CalendarMainModel} from '@ohos/times_square'
 
 @Entry
 @Component
@@ -147,20 +146,33 @@ struct Index {
       }.padding({ bottom: '10vp' })
       .scrollable(ScrollDirection.Horizontal)
 
+//      CalendarMainModel({
+//        typeOfCalendar: this.buttonType
+//      })
       if (this.buttonType === 'Single') {
-        SingleSelectModelCalendar({})
+        CalendarMainModel({
+          typeOfCalendar: "Single"
+        })
       }
       if (this.buttonType === 'Multi') {
-        MultiSelectModelCalendar({})
+        CalendarMainModel({
+          typeOfCalendar: "Multi"
+        })
       }
       if (this.buttonType === 'Range') {
-        RangeSelectModelCalendar({})
+        CalendarMainModel({
+          typeOfCalendar: "Range"
+        })
       }
       if (this.buttonType === "DisplayOnly") {
-        DisplayOnlyModelCalendar({})
+        CalendarMainModel({
+          typeOfCalendar: "DisplayOnly"
+        })
       }
       if (this.buttonType === "Dialog"){
-        DialogModelCalendar({})
+        CalendarMainModel({
+          typeOfCalendar: "Dialog"
+        })
       }
     }.padding('20vp')
   }

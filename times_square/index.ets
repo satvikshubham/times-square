@@ -3,3 +3,4 @@ export {MultiSelectModelCalendar} from './src/main/ets/components/Common/MultiSe
 export {SingleSelectModelCalendar} from './src/main/ets/components/Common/SingleSelectModelCalendar'
 export {RangeSelectModelCalendar} from './src/main/ets/components/Common/RangeSelectModelCalendar'
 export {DialogModelCalendar} from './src/main/ets/components/Common/Dialog'
+export {CalendarMainModel} from './src/main/ets/components/Common/CalendarMain'
