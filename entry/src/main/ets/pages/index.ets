@@ -1,4 +1,4 @@
-import {CalendarMainModel} from '@ohos/times_square'
+import { CalendarMainModel } from '@ohos/times_square'
 
 @Entry
 @Component
@@ -45,8 +45,6 @@ struct Index {
             Text('Multi').fontSize('20fp')
               .padding({ left: '20vp', right: '20vp' })
               .fontColor(this.getButtonTextColor(this.buttonType, "Multi"))
-
-
           }
           .onClick(() => {
             this.buttonType = "Multi"
@@ -146,9 +144,6 @@ struct Index {
       }.padding({ bottom: '10vp' })
       .scrollable(ScrollDirection.Horizontal)
 
-//      CalendarMainModel({
-//        typeOfCalendar: this.buttonType
-//      })
       if (this.buttonType === 'Single') {
         CalendarMainModel({
           typeOfCalendar: "Single"
@@ -169,7 +164,12 @@ struct Index {
           typeOfCalendar: "DisplayOnly"
         })
       }
-      if (this.buttonType === "Dialog"){
+      if (this.buttonType === "Dialog") {
+        CalendarMainModel({
+          typeOfCalendar: "Dialog"
+        })
+      }
+      if (this.buttonType === "Customized") {
         CalendarMainModel({
           typeOfCalendar: "Dialog"
         })

@@ -5,6 +5,7 @@ export struct CalendarCellView {
   year: number = 0
   d: number [] = []
   @Link selectedDate: number [][]
+
   // Attributes
   dayIcon: Resource
   textSize: number | string | Resource = '20fp'
@@ -14,6 +15,9 @@ export struct CalendarCellView {
   notInMonthTextColor: ResourceColor = "#787a7d"
   selectedTextColor: ResourceColor  = "#fafafa"
   selectedBackgroundColor: ResourceColor= "#3a4352"
+  gridShape: string = "Square"
+  gridRadius: string = '0vp'
+
   // Logic
   inMonth: boolean = true
   isCustom: boolean = false
@@ -22,6 +26,9 @@ export struct CalendarCellView {
     this.d.push(this.date)
     this.d.push(this.month)
     this.d.push(this.year)
+    if (this.gridShape === "Circle") {
+      this.gridRadius = '20vp'
+    }
   }
 
   getBackgroundColor = (date: number[]): ResourceColor => {
@@ -37,6 +44,7 @@ export struct CalendarCellView {
       return this.notInMonthColor
     }
   }
+  
   getTextColor = (date: number[]): ResourceColor => {
     if (this.inMonth) {
       if (this.selectedDate.length != 0 && this.selectedDate.find(x => x[0] == date[0] && x[1] == date[1] && x[2] == date[2])) {
@@ -58,9 +66,9 @@ export struct CalendarCellView {
           Text(this.date.toString()).fontSize(this.textSize).fontColor(this.getTextColor(this.d))
           Image(this.dayIcon).height('10vp').width('10vp')
         }
-        .width('100%').backgroundColor(this.getBackgroundColor(this.d))
+        .width('100%').backgroundColor(this.getBackgroundColor(this.d)).borderRadius(this.gridRadius)
       }
-      .height('90%').backgroundColor(this.getBackgroundColor(this.d))
+      .height('90%').backgroundColor(this.getBackgroundColor(this.d)).borderRadius(this.gridRadius)
     }
   }
 }

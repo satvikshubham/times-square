@@ -20,6 +20,22 @@ export struct CalendarMainModel {
     autoCancel: true
   })
 
+//  list of attributes
+  bgColor : ResourceColor = "#FFFFFF"
+  textSize: number | string  = '14fp'
+  monthTextColor : ResourceColor = "#000000"
+  monthTextSize : number | string  =  '14fp'
+  dayIcon: Resource
+  textSize: number | string | Resource = '20fp'
+  inMonthColor: ResourceColor = "#ebf5ef"
+  notInMonthColor: ResourceColor = "#d0d9d4"
+  inMonthTextColor: ResourceColor = "#303133"
+  notInMonthTextColor: ResourceColor = "#787a7d"
+  selectedTextColor: ResourceColor  = "#fafafa"
+  selectedBackgroundColor: ResourceColor= "#3a4352"
+  gridShape: string = "Square"
+  gridRadius: string = '0vp'
+
   aboutToAppear() {
     var temp = Calendar.getCalendarForYear(this.currentMonth, this.currentYear)
     this.monthArray = temp.listOfMonths
@@ -27,7 +43,6 @@ export struct CalendarMainModel {
     if (this.typeOfCalendar==="Dialog"){
       this.dialogBoxController.open()
     }
-
   }
 
   build() {
@@ -44,7 +59,7 @@ export struct CalendarMainModel {
           }
         })
       }
-    }
+    }.backgroundColor(this.bgColor)
   }
 }
 
@@ -60,7 +75,22 @@ struct Month {
   "March", "April", "May", "June", "July", "August",
   "September", "October", "November", "December"]
   weekDays: string [] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-  textSize: number | string | Resource = '14fp'
+  
+  // Attributes
+  textSize: number | string  = '14fp'
+  monthTextColor : ResourceColor = "#000000"
+  monthTextSize : number | string  =  '14fp'
+  dayIcon: Resource
+  textSize: number | string | Resource = '20fp'
+  inMonthColor: ResourceColor = "#ebf5ef"
+  notInMonthColor: ResourceColor = "#d0d9d4"
+  inMonthTextColor: ResourceColor = "#303133"
+  notInMonthTextColor: ResourceColor = "#787a7d"
+  selectedTextColor: ResourceColor  = "#fafafa"
+  selectedBackgroundColor: ResourceColor= "#3a4352"
+  gridShape: string = "Square"
+  gridRadius: string = '0vp'
+
 
   aboutToAppear() {
     var temp = Calendar.getDaysArray(this.year, this.month)
@@ -135,7 +165,8 @@ struct Month {
 
   build() {
     Column() {
-      Text(this.months[this.month-1] + " " + this.year).fontSize(this.textSize).alignSelf(ItemAlign.Start)
+      Text(this.months[this.month-1] + " " + this.year).fontSize(this.monthTextSize).alignSelf(ItemAlign.Start)
+        .fontColor(this.monthTextColor)
         .fontWeight(FontWeight.Bolder)
       Grid() {
         ForEach(this.weekDays, (item) => {
