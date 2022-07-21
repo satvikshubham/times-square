@@ -5,6 +5,7 @@ import { Calendar }from './Calendar'
 @Entry
 @Component
 export struct CalendarMainModel {
+  @State selectedDateFinal: number[][] = []
   typeOfCalendar: string = "Dialog"
   currentMonth = new Date().getMonth()
   currentYear = new Date().getFullYear()
@@ -12,11 +13,6 @@ export struct CalendarMainModel {
   yearArray: number []
   indexArray: number [] = Array.apply(null, Array(23)).map(function (item, i) {
     return i
-  })
-  @State selectedDateFinal: number[][] = []
-  dialogBoxController: CustomDialogController = new CustomDialogController({
-    builder: DialogBoxComponent({}),
-    autoCancel: true
   })
 
   //  list of attributes
@@ -26,7 +22,8 @@ export struct CalendarMainModel {
   monthTextSize: number | string  = '14fp'
   dayIcon: Resource
   language: string = "English"
-  withNumbers : boolean = true
+  withNumbers: boolean = true
+  selection: boolean = true
   //  textSize: number | string | Resource = '20fp'
   inMonthColor: ResourceColor = "#ebf5ef"
   notInMonthColor: ResourceColor = "#d0d9d4"
@@ -36,6 +33,11 @@ export struct CalendarMainModel {
   selectedBackgroundColor: ResourceColor= "#3a4352"
   gridShape: string = "Square"
   gridRadius: string = '0vp'
+
+  dialogBoxController: CustomDialogController = new CustomDialogController({
+    builder: DialogBoxComponent({}),
+    autoCancel: true
+  })
 
   aboutToAppear() {
     var temp = Calendar.getCalendarForYear(this.currentMonth, this.currentYear)
@@ -57,7 +59,8 @@ export struct CalendarMainModel {
               selectedDateFinal: $selectedDateFinal,
               typeOfCalendar: this.typeOfCalendar,
               language: this.language,
-              withNumbers: this.withNumbers
+              withNumbers: this.withNumbers,
+              selection: this.selection
             })
           }
         })
@@ -68,11 +71,11 @@ export struct CalendarMainModel {
 
 @Component
 struct Month {
+  @Link selectedDateFinal: number [][]
   year: number = 2021
   month: number = 6
   monthDays: string [] = []
   inMonthArray: boolean []= []
-  @Link selectedDateFinal: number [][]
   typeOfCalendar: string = "Single"
   months: string [] = ["January", "February",
   "March", "April", "May", "June", "July", "August",
@@ -84,7 +87,8 @@ struct Month {
   monthTextColor: ResourceColor = "#000000"
   monthTextSize: number | string  = '16fp'
   dayIcon: Resource
-  withNumbers : boolean = true
+  withNumbers: boolean = true
+  selection: boolean = true
   //  textSize: number | string | Resource = '20fp'
   inMonthColor: ResourceColor = "#ebf5ef"
   notInMonthColor: ResourceColor = "#d0d9d4"
@@ -95,6 +99,7 @@ struct Month {
   gridShape: string = "Square"
   gridRadius: string = '0vp'
   language: string = "English"
+
   replaceNumberWithArabic = (num: number): string => {
     let arabic = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
     let k = ""
@@ -106,6 +111,7 @@ struct Month {
     k += arabic[fd]
     return k;
   }
+
   rotateAfterEvery7th = (arr: any[]): any[] => {
     for (let i = 0; i < arr.length; i = i + 7) {
       [arr[i + 0], arr[i + 6]] = [arr[i + 6], arr[i + 0]];
@@ -120,7 +126,7 @@ struct Month {
     this.monthDays = temp.days
     this.inMonthArray = temp.inMonthArray
     if (this.language === "Arabic") {
-      if (!this.withNumbers){
+      if (!this.withNumbers) {
         for (let i = 0; i < this.monthDays.length; i++) {
           this.monthDays[i] = this.replaceNumberWithArabic(+this.monthDays[i])
         }
@@ -153,64 +159,64 @@ struct Month {
       return true
     }
   }
+
   push = (date: DATE): void => {
-    if (this.typeOfCalendar === "Single") {
-      if (this.selectedDateFinal.length == 0) {
-        this.selectedDateFinal.push(date.getDate())
-      }
-      else {
-        this.selectedDateFinal.pop()
-        this.selectedDateFinal.push(date.getDate())
-      }
-    }
-    if (this.typeOfCalendar === "Multi") {
-      let d = date.getDate()
-      let ind = this.selectedDateFinal.findIndex(x => x[0] == d[0] && x[1] == d[1] && x[2] == d[2])
-      if (ind != -1) {
-        this.selectedDateFinal.splice(ind, 1)
-      }
-      else {
-        this.selectedDateFinal.push(d)
-      }
-    }
-    if (this.typeOfCalendar === "Range") {
-      let d = date.getDate()
-      if (this.selectedDateFinal.length == 0) {
-        this.selectedDateFinal.push(d)
-      }
-      else {
-        if (this.selectedDateFinal.length == 1) {
-          let startDate: DATE = new DATE(this.selectedDateFinal[0][0], this.selectedDateFinal[0][1], this.selectedDateFinal[0][2])
-          if (this.isCorrect(startDate, date)) {
-            let tempStart: Date = new Date(this.selectedDateFinal[0][2], this.selectedDateFinal[0][1], this.selectedDateFinal[0][0])
-            let tempEnd: Date = new Date(date.getYear(), date.getMonth(), date.getDay())
-            tempStart.setDate(tempStart.getDate() + 1)
-            const d = new Date(tempStart.getTime())
-            while (d <= tempEnd) {
-              this.selectedDateFinal.push([d.getDate(), d.getMonth(), d.getFullYear()]);
-              d.setDate(d.getDate() + 1);
-            }
-          }
-          else {
-            this.selectedDateFinal.pop()
-            this.selectedDateFinal.push([date.getDay(), date.getMonth(), date.getYear()])
-          }
+    if (this.selection) {
+      if (this.typeOfCalendar === "Single") {
+        if (this.selectedDateFinal.length == 0) {
+          this.selectedDateFinal.push(date.getDate())
         }
         else {
-          this.selectedDateFinal = []
+          this.selectedDateFinal.pop()
           this.selectedDateFinal.push(date.getDate())
         }
       }
+      if (this.typeOfCalendar === "Multi") {
+        let d = date.getDate()
+        let ind = this.selectedDateFinal.findIndex(x => x[0] == d[0] && x[1] == d[1] && x[2] == d[2])
+        if (ind != -1) {
+          this.selectedDateFinal.splice(ind, 1)
+        }
+        else {
+          this.selectedDateFinal.push(d)
+        }
+      }
+      if (this.typeOfCalendar === "Range") {
+        let d = date.getDate()
+        if (this.selectedDateFinal.length == 0) {
+          this.selectedDateFinal.push(d)
+        }
+        else {
+          if (this.selectedDateFinal.length == 1) {
+            let startDate: DATE = new DATE(this.selectedDateFinal[0][0], this.selectedDateFinal[0][1], this.selectedDateFinal[0][2])
+            if (this.isCorrect(startDate, date)) {
+              let tempStart: Date = new Date(this.selectedDateFinal[0][2], this.selectedDateFinal[0][1], this.selectedDateFinal[0][0])
+              let tempEnd: Date = new Date(date.getYear(), date.getMonth(), date.getDay())
+              tempStart.setDate(tempStart.getDate() + 1)
+              const d = new Date(tempStart.getTime())
+              while (d <= tempEnd) {
+                this.selectedDateFinal.push([d.getDate(), d.getMonth(), d.getFullYear()]);
+                d.setDate(d.getDate() + 1);
+              }
+            }
+            else {
+              this.selectedDateFinal.pop()
+              this.selectedDateFinal.push([date.getDay(), date.getMonth(), date.getYear()])
+            }
+          }
+          else {
+            this.selectedDateFinal = []
+            this.selectedDateFinal.push(date.getDate())
+          }
+        }
+      }
     }
-    if (this.typeOfCalendar === "DisplayOnly") {
-
+    else {
     }
-
   }
 
   build() {
     Column() {
-
       Text(this.months[this.month-1] + " " + this.year).fontSize(this.monthTextSize).alignSelf(ItemAlign.Start)
         .fontColor(this.monthTextColor)
       Grid() {

@@ -4,7 +4,7 @@ import { CalendarMainModel } from '@ohos/times_square'
 @Component
 struct Index {
   scroller: Scroller = new Scroller()
-  @State buttonType: string = "Arabic"
+  @State buttonType: string = "Single"
   unselectedButtonColor: ResourceColor = "#ccc6b6"
   selectedButtonColor: ResourceColor = "#403927"
   unselectedButtonTextColor: ResourceColor = "#0c1f1a"
@@ -161,7 +161,8 @@ struct Index {
       }
       if (this.buttonType === "DisplayOnly") {
         CalendarMainModel({
-          typeOfCalendar: "DisplayOnly"
+          typeOfCalendar: "Single",
+          selection : false
         })
       }
       if (this.buttonType === "Dialog") {
@@ -177,7 +178,14 @@ struct Index {
       if (this.buttonType === "Arabic") {
         CalendarMainModel({
           typeOfCalendar: "Single",
-          language : "Arabic"
+          language: "Arabic"
+        })
+      }
+      if (this.buttonType === "Arabic with numbers") {
+        CalendarMainModel({
+          typeOfCalendar: "Single",
+          language: "Arabic",
+          withNumbers: false
         })
       }
     }.padding('20vp')
