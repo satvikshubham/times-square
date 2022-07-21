@@ -14,19 +14,20 @@ export struct CalendarMainModel {
     return i
   })
   @State selectedDateFinal: number[][] = []
-
   dialogBoxController: CustomDialogController = new CustomDialogController({
     builder: DialogBoxComponent({}),
     autoCancel: true
   })
 
-//  list of attributes
-  bgColor : ResourceColor = "#FFFFFF"
+  //  list of attributes
+  bgColor: ResourceColor = "#FFFFFF"
   textSize: number | string  = '14fp'
-  monthTextColor : ResourceColor = "#000000"
-  monthTextSize : number | string  =  '14fp'
+  monthTextColor: ResourceColor = "#000000"
+  monthTextSize: number | string  = '14fp'
   dayIcon: Resource
-  textSize: number | string | Resource = '20fp'
+  language: string = "English"
+  withNumbers : boolean = true
+  //  textSize: number | string | Resource = '20fp'
   inMonthColor: ResourceColor = "#ebf5ef"
   notInMonthColor: ResourceColor = "#d0d9d4"
   inMonthTextColor: ResourceColor = "#303133"
@@ -40,7 +41,7 @@ export struct CalendarMainModel {
     var temp = Calendar.getCalendarForYear(this.currentMonth, this.currentYear)
     this.monthArray = temp.listOfMonths
     this.yearArray = temp.listOfYear
-    if (this.typeOfCalendar==="Dialog"){
+    if (this.typeOfCalendar === "Dialog") {
       this.dialogBoxController.open()
     }
   }
@@ -54,7 +55,9 @@ export struct CalendarMainModel {
               month: this.monthArray[item],
               year: this.yearArray[item],
               selectedDateFinal: $selectedDateFinal,
-              typeOfCalendar: this.typeOfCalendar
+              typeOfCalendar: this.typeOfCalendar,
+              language: this.language,
+              withNumbers: this.withNumbers
             })
           }
         })
@@ -75,13 +78,14 @@ struct Month {
   "March", "April", "May", "June", "July", "August",
   "September", "October", "November", "December"]
   weekDays: string [] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-  
+
   // Attributes
   textSize: number | string  = '14fp'
-  monthTextColor : ResourceColor = "#000000"
-  monthTextSize : number | string  =  '14fp'
+  monthTextColor: ResourceColor = "#000000"
+  monthTextSize: number | string  = '16fp'
   dayIcon: Resource
-  textSize: number | string | Resource = '20fp'
+  withNumbers : boolean = true
+  //  textSize: number | string | Resource = '20fp'
   inMonthColor: ResourceColor = "#ebf5ef"
   notInMonthColor: ResourceColor = "#d0d9d4"
   inMonthTextColor: ResourceColor = "#303133"
@@ -90,12 +94,53 @@ struct Month {
   selectedBackgroundColor: ResourceColor= "#3a4352"
   gridShape: string = "Square"
   gridRadius: string = '0vp'
-
+  language: string = "English"
+  replaceNumberWithArabic = (num: number): string => {
+    let arabic = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+    let k = ""
+    let fd = num % 10
+    let sd = Math.floor(num / 10)
+    if (sd > 0) {
+      k += arabic[sd]
+    }
+    k += arabic[fd]
+    return k;
+  }
+  rotateAfterEvery7th = (arr: any[]): any[] => {
+    for (let i = 0; i < arr.length; i = i + 7) {
+      [arr[i + 0], arr[i + 6]] = [arr[i + 6], arr[i + 0]];
+      [arr[i + 1], arr[i + 5]] = [arr[i + 5], arr[i + 1]];
+      [arr[i + 2], arr[i + 4]] = [arr[i + 4], arr[i + 2]];
+    }
+    return arr;
+  }
 
   aboutToAppear() {
     var temp = Calendar.getDaysArray(this.year, this.month)
     this.monthDays = temp.days
     this.inMonthArray = temp.inMonthArray
+    if (this.language === "Arabic") {
+      if (!this.withNumbers){
+        for (let i = 0; i < this.monthDays.length; i++) {
+          this.monthDays[i] = this.replaceNumberWithArabic(+this.monthDays[i])
+        }
+      }
+      this.weekDays = ['السبت', 'الجمعه', 'الخميس', 'الأربعاء', 'الثلاثاء', 'الأثنين', 'الأحد']
+      this.monthDays = this.rotateAfterEvery7th(this.monthDays)
+      this.inMonthArray = this.rotateAfterEvery7th(this.inMonthArray)
+      this.months = ['يناير',
+      'فبراير',
+      'مارس',
+      'إبريل',
+      'مايو',
+      'يونيه',
+      'يوليه',
+      'أغسطس',
+      'سبتمبر',
+      'أكتوبر',
+      'نوفمبر',
+      'ديسمبر']
+    }
   }
 
   isCorrect = (startDate: DATE, endDate: DATE): boolean => {
@@ -157,7 +202,7 @@ struct Month {
         }
       }
     }
-    if (this.typeOfCalendar === "DisplayOnly"){
+    if (this.typeOfCalendar === "DisplayOnly") {
 
     }
 
@@ -165,9 +210,9 @@ struct Month {
 
   build() {
     Column() {
+
       Text(this.months[this.month-1] + " " + this.year).fontSize(this.monthTextSize).alignSelf(ItemAlign.Start)
         .fontColor(this.monthTextColor)
-        .fontWeight(FontWeight.Bolder)
       Grid() {
         ForEach(this.weekDays, (item) => {
           GridItem() {
@@ -203,6 +248,7 @@ struct DialogBoxComponent {
   controller: CustomDialogController
   cancel: () => void
   okay: () => void
+
   build() {
     Column() {
       Stack({ alignContent: Alignment.Bottom }) {
@@ -212,12 +258,12 @@ struct DialogBoxComponent {
         Row() {
           Button({ type: ButtonType.Normal }) {
             Text("Dismiss").fontColor('#FFFFFF').fontSize('20fp')
-          }.onClick(()=>{
+          }.onClick(() => {
             this.controller.close()
           })
           .width('100vp')
           .backgroundColor("#544343")
-          .shadow({radius:3})
+          .shadow({ radius: 3 })
         }.backgroundColor("#FFFFFF").width('100%').height('60vp')
       }
     }.padding('20vp')

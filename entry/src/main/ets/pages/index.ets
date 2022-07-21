@@ -4,7 +4,7 @@ import { CalendarMainModel } from '@ohos/times_square'
 @Component
 struct Index {
   scroller: Scroller = new Scroller()
-  @State buttonType: string = "Single"
+  @State buttonType: string = "Arabic"
   unselectedButtonColor: ResourceColor = "#ccc6b6"
   selectedButtonColor: ResourceColor = "#403927"
   unselectedButtonTextColor: ResourceColor = "#0c1f1a"
@@ -172,6 +172,12 @@ struct Index {
       if (this.buttonType === "Customized") {
         CalendarMainModel({
           typeOfCalendar: "Dialog"
+        })
+      }
+      if (this.buttonType === "Arabic") {
+        CalendarMainModel({
+          typeOfCalendar: "Single",
+          language : "Arabic"
         })
       }
     }.padding('20vp')

@@ -45,6 +45,7 @@ export class Calendar {
     }
     return { days, inMonthArray };
   }
+
   static getCalendarForYear = (month: number, year: number): any => {
     let listOfMonths: number[] = []
     let listOfYear: number[] = []
