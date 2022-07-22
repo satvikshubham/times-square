@@ -23,10 +23,10 @@ export struct CalendarCellView {
   @Link selectedDate: number [][]
 
   // Attributes
-  dayIcon: Resource
+  tsDayIcon: Resource
   tsGridTextSize: number | string | Resource = '20fp'
-  inMonthColor: ResourceColor = "#ebf5ef"
-  notInMonthColor: ResourceColor = "#d0d9d4"
+  tsInMonthColor: ResourceColor = "#ebf5ef"
+  tsNotInMonthColor: ResourceColor = "#d0d9d4"
   tsInMonthTextColor: ResourceColor = "#303133"
   tsNotInMonthTextColor: ResourceColor = "#787a7d"
   tsSelectedTextColor: ResourceColor  = "#fafafa"
@@ -53,14 +53,13 @@ export struct CalendarCellView {
         return this.tsSelectedGridBackgroundColor
       }
       else {
-        return this.inMonthColor
+        return this.tsInMonthColor
       }
     }
     else {
-      return this.notInMonthColor
+      return this.tsNotInMonthColor
     }
   }
-
   getTextColor = (date: number[]): ResourceColor => {
     if (this.inMonth) {
       if (this.selectedDate.length != 0 && this.selectedDate.find(x => x[0] == date[0] && x[1] == date[1] && x[2] == date[2])) {

@@ -29,48 +29,31 @@ Import the following
 import { CalendarMainModel } from '@ohos/times_square'
 ```
 ### Code
-To pickup from the days of the week, pass the variable of type business
-```
-BusinessPicker({
-            selectedBusinessModel: $[YourModelName],
-            bhTextColor: 'textColor',
-            bhTextSize: textSize,
-            bhTextStyle: 'font',
-            bhFormat : (format 12 or 24)
-            bhTodayColor: 'todayColor'
-          })
-```
-To display full list of business days
-```
-BusinessHoursWeekView({
-        showBusinessModel: this.[YourModelName],
-        bhIcon: $r(resource),
-        bhIconPadding: padding,
-        bhTextColor: 'textColor',
-        bhTextSize: textSize,
-        bhTextStyle: 'font',
-        bhTodayColor: 'todayColor',
-        bhTodayStyle: 'todayFont',
-        bhTodayTextSize: todayTextSize,
-        bhTodayIcon: $r(resource)
-      })
-```
+[insert here]
+
 ## Styling
 ****
-You can style the viewer  using theses attributes :
+You can style the Calendar  using theses attributes :
 
-| Attribute  | Description  |
-| ------------ | ------------ |
-| bhIcon  | Left icon of the day  |
-|bhTextColor   |  Text color |
-| bhTextSize  | Text Size  |
-| bhIconPadding  | Left icon padding  |
-|  bhTextStyle | Default text style   |
-|  bhTodayStyle | Today  text style (highlighted)   |
-|  bhTodayColor | Today  text color (highlighted)   |
-|  bhTodayTextSize | Today  text size|
-| bhTodayIcon | Today left icon|
-| bhFormat |12 or 24 hours format|
+| Attribute | Description |
+| -------- | ----------- |
+|tsTypeOfCalendar|Type of the calendar|
+|tsBgColor|Background color of the calendar|
+|tsGridTextSize|Calendar grid text size|
+|tsMonthTextSize|Calendar month text size|
+|tsMonthTextColor|calendar month text color|
+|tsSelectedTextColor|Calendar selected date text color|
+|tsSelectedGridBackgroundColor|Calendar selected date background color|
+|tsNotInMonthTextColor|Calendar not in month text color|
+|tsInMonthColor|Calendar in month text color|
+|tsNotInMonthColor|Calendar not in month background color|
+|tsInMonthTextColor|Calendar in month background color|
+|tsSetSelection|Calendar setting for selection|
+|tsWithNumbers|Calendar to show numbers (For arabic)|
+|tsLanguage|Calendar set language|
+|tsGridShape|Calendar grid shape|
+|tsDayIcon|Calendar grid icon|
+
 ## Compatibility
 ****
 Supports OpenHarmony API version 9

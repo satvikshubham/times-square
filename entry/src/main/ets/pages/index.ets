@@ -178,7 +178,7 @@ struct Index {
       if (this.buttonType === "DisplayOnly") {
         CalendarMainModel({
           tsTypeOfCalendar: "Single",
-          tsSetSelection : false
+          tsSetSelection: false
         })
       }
       if (this.buttonType === "Dialog") {

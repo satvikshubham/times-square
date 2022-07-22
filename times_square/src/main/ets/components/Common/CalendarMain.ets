@@ -29,7 +29,6 @@ export struct CalendarMainModel {
   indexArray: number [] = Array.apply(null, Array(23)).map(function (item, i) {
     return i
   })
-
   tsTypeOfCalendar: string = "Dialog"
   tsBgColor: ResourceColor = "#FFFFFF"
   tsGridTextSize: number | string  = '14fp'
@@ -46,7 +45,6 @@ export struct CalendarMainModel {
   tsLanguage: string = "English"
   tsGridShape: string = "Square"
   tsDayIcon: Resource
-
   dialogBoxController: CustomDialogController = new CustomDialogController({
     builder: DialogBoxComponent({}),
     autoCancel: true
@@ -70,10 +68,20 @@ export struct CalendarMainModel {
               month: this.monthArray[item],
               year: this.yearArray[item],
               selectedDateFinal: $selectedDateFinal,
-              tsTypeOfCalendar: this.tsTypeOfCalendar,
-              tsLanguage: this.tsLanguage,
+              tsGridTextSize: this.tsGridTextSize,
+              tsMonthTextSize: this.tsMonthTextSize,
+              tsMonthTextColor: this.tsMonthTextColor,
+              tsSelectedTextColor: this.tsSelectedTextColor,
+              tsSelectedGridBackgroundColor: this.tsSelectedGridBackgroundColor,
+              tsNotInMonthTextColor: this.tsNotInMonthTextColor,
+              tsInMonthColor: this.tsInMonthColor,
+              tsNotInMonthColor: this.tsNotInMonthColor,
+              tsInMonthTextColor: this.tsInMonthTextColor,
+              tsSetSelection: this.tsSetSelection,
               tsWithNumbers: this.tsWithNumbers,
-              tsSetSelection: this.tsSetSelection
+              tsLanguage: this.tsLanguage,
+              tsGridShape: this.tsGridShape,
+              tsDayIcon: this.tsDayIcon
             })
           }
         })
@@ -94,7 +102,6 @@ struct Month {
   "March", "April", "May", "June", "July", "August",
   "September", "October", "November", "December"]
   weekDays: string [] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-
   tsDayIcon: Resource
   tsGridTextSize: number | string  = '14fp'
   tsMonthTextSize: number | string  = '16fp'
@@ -109,7 +116,6 @@ struct Month {
   tsWithNumbers: boolean = true
   tsLanguage: string = "English"
   tsGridShape: string = "Square"
-
   replaceNumberWithArabic = (num: number): string => {
     let arabic = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
     let k = ""
@@ -121,7 +127,6 @@ struct Month {
     k += arabic[fd]
     return k;
   }
-
   rotateAfterEvery7th = (arr: any[]): any[] => {
     for (let i = 0; i < arr.length; i = i + 7) {
       [arr[i + 0], arr[i + 6]] = [arr[i + 6], arr[i + 0]];
@@ -169,7 +174,6 @@ struct Month {
       return true
     }
   }
-
   push = (date: DATE): void => {
     if (this.tsSetSelection) {
       if (this.tsTypeOfCalendar === "Single") {
@@ -241,9 +245,17 @@ struct Month {
               date: item,
               month: this.month - 1,
               year: this.year,
-              tsGridTextSize: this.tsGridTextSize,
               inMonth: this.inMonthArray[index],
               selectedDate: $selectedDateFinal,
+              tsGridTextSize: this.tsGridTextSize,
+              tsSelectedTextColor: this.tsSelectedTextColor,
+              tsSelectedGridBackgroundColor: this.tsSelectedGridBackgroundColor,
+              tsNotInMonthTextColor: this.tsNotInMonthTextColor,
+              tsInMonthColor: this.tsInMonthColor,
+              tsNotInMonthColor: this.tsNotInMonthColor,
+              tsInMonthTextColor: this.tsInMonthTextColor,
+              tsGridShape: this.tsGridShape,
+              tsDayIcon: this.tsDayIcon
             })
           }.padding('2vp')
           .onClick(() => {
