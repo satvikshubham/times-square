@@ -146,46 +146,46 @@ struct Index {
 
       if (this.buttonType === 'Single') {
         CalendarMainModel({
-          typeOfCalendar: "Single"
+          tsTypeOfCalendar: "Single"
         })
       }
       if (this.buttonType === 'Multi') {
         CalendarMainModel({
-          typeOfCalendar: "Multi"
+          tsTypeOfCalendar: "Multi"
         })
       }
       if (this.buttonType === 'Range') {
         CalendarMainModel({
-          typeOfCalendar: "Range"
+          tsTypeOfCalendar: "Range"
         })
       }
       if (this.buttonType === "DisplayOnly") {
         CalendarMainModel({
-          typeOfCalendar: "Single",
-          selection : false
+          tsTypeOfCalendar: "Single",
+          tsSetSelection : false
         })
       }
       if (this.buttonType === "Dialog") {
         CalendarMainModel({
-          typeOfCalendar: "Dialog"
+          tsTypeOfCalendar: "Dialog"
         })
       }
       if (this.buttonType === "Customized") {
         CalendarMainModel({
-          typeOfCalendar: "Dialog"
+          tsTypeOfCalendar: "Dialog"
         })
       }
       if (this.buttonType === "Arabic") {
         CalendarMainModel({
-          typeOfCalendar: "Single",
-          language: "Arabic"
+          tsTypeOfCalendar: "Single",
+          tsLanguage: "Arabic"
         })
       }
       if (this.buttonType === "Arabic with numbers") {
         CalendarMainModel({
-          typeOfCalendar: "Single",
-          language: "Arabic",
-          withNumbers: false
+          tsTypeOfCalendar: "Single",
+          tsLanguage: "Arabic",
+          tsWithNumbers: false
         })
       }
     }.padding('20vp')
