@@ -79,7 +79,7 @@ export struct CalendarCellView {
       Row() {
         Column() {
           Text(this.date.toString()).fontSize(this.tsGridTextSize).fontColor(this.getTextColor(this.d))
-          Image(this.dayIcon).height('10vp').width('10vp')
+          Image(this.tsDayIcon).height('10vp').width('10vp')
         }
         .width('100%').backgroundColor(this.getBackgroundColor(this.d)).borderRadius(this.tsGridRadius)
       }

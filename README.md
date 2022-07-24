@@ -29,7 +29,25 @@ Import the following
 import { CalendarMainModel } from '@ohos/times_square'
 ```
 ### Code
-[insert here]
+To use the calendar dependency
+```
+CalendarMainModel({
+          tsTypeOfCalendar: Type of Calendar [Single|Multi|Range],
+          tsBgColor: "#FFFFFF",
+          tsGridTextSize:'14fp',
+          tsMonthTextSize:  '14fp',
+          tsMonthTextColor: "#000000",
+          tsSelectedTextColor: "#fafafa",
+          tsSelectedGridBackgroundColor: "#3a4352",
+          tsNotInMonthTextColor: "#787a7d",
+          tsInMonthColor: "#ebf5ef",
+          tsNotInMonthColor: "#d0d9d4",
+          tsInMonthTextColor: "#303133",
+          tsSetSelection: true,
+          tsWithNumbers: true,
+          tsLanguage: "Arabic",
+          tsGridShape: "Square"
+```
 
 ## Styling
 ****

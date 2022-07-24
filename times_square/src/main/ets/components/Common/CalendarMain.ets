@@ -29,7 +29,8 @@ export struct CalendarMainModel {
   indexArray: number [] = Array.apply(null, Array(23)).map(function (item, i) {
     return i
   })
-  tsTypeOfCalendar: string = "Dialog"
+  tsTypeOfCalendar: string = "Single"
+  tsIsDialog: boolean = false
   tsBgColor: ResourceColor = "#FFFFFF"
   tsGridTextSize: number | string  = '14fp'
   tsMonthTextSize: number | string  = '14fp'
@@ -44,17 +45,34 @@ export struct CalendarMainModel {
   tsWithNumbers: boolean = true
   tsLanguage: string = "English"
   tsGridShape: string = "Square"
-  tsDayIcon: Resource
+  tsDayIcon: Resource = $r('app.string.page_show')
+
   dialogBoxController: CustomDialogController = new CustomDialogController({
-    builder: DialogBoxComponent({}),
-    autoCancel: true
+    builder: DialogBoxComponent({
+      tsTypeOfCalendar: this.tsTypeOfCalendar,
+      tsGridTextSize: this.tsGridTextSize,
+      tsMonthTextSize: this.tsMonthTextSize,
+      tsMonthTextColor: this.tsMonthTextColor,
+      tsSelectedTextColor: this.tsSelectedTextColor,
+      tsSelectedGridBackgroundColor: this.tsSelectedGridBackgroundColor,
+      tsNotInMonthTextColor: this.tsNotInMonthTextColor,
+      tsInMonthColor: this.tsInMonthColor,
+      tsNotInMonthColor: this.tsNotInMonthColor,
+      tsInMonthTextColor: this.tsInMonthTextColor,
+      tsSetSelection: this.tsSetSelection,
+      tsWithNumbers: this.tsWithNumbers,
+      tsLanguage: this.tsLanguage,
+      tsGridShape: this.tsGridShape,
+      tsDayIcon: this.tsDayIcon
+    }),
+    autoCancel: true,
   })
 
   aboutToAppear() {
     var temp = Calendar.getCalendarForYear(this.currentMonth, this.currentYear)
     this.monthArray = temp.listOfMonths
     this.yearArray = temp.listOfYear
-    if (this.tsTypeOfCalendar === "Dialog") {
+    if (this.tsIsDialog) {
       this.dialogBoxController.open()
     }
   }
@@ -276,6 +294,23 @@ struct DialogBoxComponent {
   controller: CustomDialogController
   cancel: () => void
   okay: () => void
+  tsTypeOfCalendar: string = "Single"
+  tsIsDialog: boolean = false
+  tsBgColor: ResourceColor = "#FFFFFF"
+  tsGridTextSize: number | string  = '14fp'
+  tsMonthTextSize: number | string  = '14fp'
+  tsMonthTextColor: ResourceColor = "#000000"
+  tsSelectedTextColor: ResourceColor  = "#fafafa"
+  tsSelectedGridBackgroundColor: ResourceColor= "#3a4352"
+  tsNotInMonthTextColor: ResourceColor = "#787a7d"
+  tsInMonthColor: ResourceColor = "#ebf5ef"
+  tsNotInMonthColor: ResourceColor = "#d0d9d4"
+  tsInMonthTextColor: ResourceColor = "#303133"
+  tsSetSelection: boolean = true
+  tsWithNumbers: boolean = true
+  tsLanguage: string = "English"
+  tsGridShape: string = "Square"
+  tsDayIcon: Resource = $r('app.string.page_show')
 
   build() {
     Column() {

@@ -20,7 +20,7 @@ import { CalendarMainModel } from '@ohos/times_square'
 @Component
 struct Index {
   scroller: Scroller = new Scroller()
-  @State buttonType: string = "Single"
+  @State buttonType: string = "Dialog"
   unselectedButtonColor: ResourceColor = "#ccc6b6"
   selectedButtonColor: ResourceColor = "#403927"
   unselectedButtonTextColor: ResourceColor = "#0c1f1a"
@@ -162,46 +162,156 @@ struct Index {
 
       if (this.buttonType === 'Single') {
         CalendarMainModel({
-          tsTypeOfCalendar: "Single"
+          tsTypeOfCalendar: "Single",
+          tsBgColor: "#FFFFFF",
+          tsGridTextSize:'14fp',
+          tsMonthTextSize:  '14fp',
+          tsMonthTextColor: "#000000",
+          tsSelectedTextColor: "#fafafa",
+          tsSelectedGridBackgroundColor: "#3a4352",
+          tsNotInMonthTextColor: "#787a7d",
+          tsInMonthColor: "#ebf5ef",
+          tsNotInMonthColor: "#d0d9d4",
+          tsInMonthTextColor: "#303133",
+          tsSetSelection: true,
+          tsWithNumbers: true,
+          tsLanguage: "English",
+          tsGridShape: "Square"
         })
       }
       if (this.buttonType === 'Multi') {
         CalendarMainModel({
-          tsTypeOfCalendar: "Multi"
+          tsTypeOfCalendar: "Multi",
+          tsBgColor: "#FFFFFF",
+          tsGridTextSize:'14fp',
+          tsMonthTextSize:  '14fp',
+          tsMonthTextColor: "#000000",
+          tsSelectedTextColor: "#fafafa",
+          tsSelectedGridBackgroundColor: "#3a4352",
+          tsNotInMonthTextColor: "#787a7d",
+          tsInMonthColor: "#ebf5ef",
+          tsNotInMonthColor: "#d0d9d4",
+          tsInMonthTextColor: "#303133",
+          tsSetSelection: true,
+          tsWithNumbers: true,
+          tsLanguage: "English",
+          tsGridShape: "Square"
         })
       }
       if (this.buttonType === 'Range') {
         CalendarMainModel({
-          tsTypeOfCalendar: "Range"
+          tsTypeOfCalendar: "Range",
+          tsBgColor: "#FFFFFF",
+          tsGridTextSize:'14fp',
+          tsMonthTextSize:  '14fp',
+          tsMonthTextColor: "#000000",
+          tsSelectedTextColor: "#fafafa",
+          tsSelectedGridBackgroundColor: "#3a4352",
+          tsNotInMonthTextColor: "#787a7d",
+          tsInMonthColor: "#ebf5ef",
+          tsNotInMonthColor: "#d0d9d4",
+          tsInMonthTextColor: "#303133",
+          tsSetSelection: true,
+          tsWithNumbers: true,
+          tsLanguage: "English",
+          tsGridShape: "Square"
         })
       }
       if (this.buttonType === "DisplayOnly") {
         CalendarMainModel({
           tsTypeOfCalendar: "Single",
-          tsSetSelection: false
+          tsBgColor: "#FFFFFF",
+          tsGridTextSize:'14fp',
+          tsMonthTextSize:  '14fp',
+          tsMonthTextColor: "#000000",
+          tsSelectedTextColor: "#fafafa",
+          tsSelectedGridBackgroundColor: "#3a4352",
+          tsNotInMonthTextColor: "#787a7d",
+          tsInMonthColor: "#ebf5ef",
+          tsNotInMonthColor: "#d0d9d4",
+          tsInMonthTextColor: "#303133",
+          tsSetSelection: true,
+          tsWithNumbers: true,
+          tsLanguage: "English",
+          tsGridShape: "Square"
         })
       }
       if (this.buttonType === "Dialog") {
         CalendarMainModel({
-          tsTypeOfCalendar: "Dialog"
+          tsTypeOfCalendar: "Multi",
+          tsIsDialog: true,
+          tsBgColor: "#FFFFFF",
+          tsGridTextSize:'14fp',
+          tsMonthTextSize:  '14fp',
+          tsMonthTextColor: "#000000",
+          tsSelectedTextColor: "#fafafa",
+          tsSelectedGridBackgroundColor: "#3a4352",
+          tsNotInMonthTextColor: "#787a7d",
+          tsInMonthColor: "#ebf5ef",
+          tsNotInMonthColor: "#d0d9d4",
+          tsInMonthTextColor: "#303133",
+          tsSetSelection: true,
+          tsWithNumbers: true,
+          tsLanguage: "English",
+          tsGridShape: "Square"
         })
       }
       if (this.buttonType === "Customized") {
         CalendarMainModel({
-          tsTypeOfCalendar: "Dialog"
+          tsTypeOfCalendar: "Single",
+          tsIsDialog: true,
+          tsBgColor: "#FFFFFF",
+          tsGridTextSize:'14fp',
+          tsMonthTextSize:  '14fp',
+          tsMonthTextColor: "#000000",
+          tsSelectedTextColor: "#fafafa",
+          tsSelectedGridBackgroundColor: "#3a4352",
+          tsNotInMonthTextColor: "#787a7d",
+          tsInMonthColor: "#ebf5ef",
+          tsNotInMonthColor: "#d0d9d4",
+          tsInMonthTextColor: "#303133",
+          tsSetSelection: true,
+          tsWithNumbers: true,
+          tsLanguage: "English",
+          tsGridShape: "Square"
         })
       }
       if (this.buttonType === "Arabic") {
         CalendarMainModel({
           tsTypeOfCalendar: "Single",
-          tsLanguage: "Arabic"
+          tsBgColor: "#FFFFFF",
+          tsGridTextSize:'14fp',
+          tsMonthTextSize:  '14fp',
+          tsMonthTextColor: "#000000",
+          tsSelectedTextColor: "#fafafa",
+          tsSelectedGridBackgroundColor: "#3a4352",
+          tsNotInMonthTextColor: "#787a7d",
+          tsInMonthColor: "#ebf5ef",
+          tsNotInMonthColor: "#d0d9d4",
+          tsInMonthTextColor: "#303133",
+          tsSetSelection: true,
+          tsWithNumbers: false,
+          tsLanguage: "Arabic",
+          tsGridShape: "Square"
         })
       }
       if (this.buttonType === "Arabic with numbers") {
         CalendarMainModel({
           tsTypeOfCalendar: "Single",
+          tsBgColor: "#FFFFFF",
+          tsGridTextSize:'14fp',
+          tsMonthTextSize:  '14fp',
+          tsMonthTextColor: "#000000",
+          tsSelectedTextColor: "#fafafa",
+          tsSelectedGridBackgroundColor: "#3a4352",
+          tsNotInMonthTextColor: "#787a7d",
+          tsInMonthColor: "#ebf5ef",
+          tsNotInMonthColor: "#d0d9d4",
+          tsInMonthTextColor: "#303133",
+          tsSetSelection: true,
+          tsWithNumbers: true,
           tsLanguage: "Arabic",
-          tsWithNumbers: false
+          tsGridShape: "Square"
         })
       }
     }.padding('20vp')
