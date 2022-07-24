@@ -85,6 +85,7 @@ export struct CalendarMainModel {
             Month({
               month: this.monthArray[item],
               year: this.yearArray[item],
+              tsTypeOfCalendar : this.tsTypeOfCalendar,
               selectedDateFinal: $selectedDateFinal,
               tsGridTextSize: this.tsGridTextSize,
               tsMonthTextSize: this.tsMonthTextSize,
@@ -115,12 +116,12 @@ struct Month {
   month: number = 6
   monthDays: string [] = []
   inMonthArray: boolean []= []
-  tsTypeOfCalendar: string = "Single"
   months: string [] = ["January", "February",
   "March", "April", "May", "June", "July", "August",
   "September", "October", "November", "December"]
   weekDays: string [] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
   tsDayIcon: Resource
+  tsTypeOfCalendar : string = "Single"
   tsGridTextSize: number | string  = '14fp'
   tsMonthTextSize: number | string  = '16fp'
   tsMonthTextColor: ResourceColor = "#000000"

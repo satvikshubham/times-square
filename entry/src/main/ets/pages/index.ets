@@ -20,7 +20,7 @@ import { CalendarMainModel } from '@ohos/times_square'
 @Component
 struct Index {
   scroller: Scroller = new Scroller()
-  @State buttonType: string = "Dialog"
+  @State buttonType: string = "Single"
   unselectedButtonColor: ResourceColor = "#ccc6b6"
   selectedButtonColor: ResourceColor = "#403927"
   unselectedButtonTextColor: ResourceColor = "#0c1f1a"
@@ -295,7 +295,7 @@ struct Index {
           tsGridShape: "Square"
         })
       }
-      if (this.buttonType === "Arabic with numbers") {
+      if (this.buttonType === "Arabic with digits") {
         CalendarMainModel({
           tsTypeOfCalendar: "Single",
           tsBgColor: "#FFFFFF",
