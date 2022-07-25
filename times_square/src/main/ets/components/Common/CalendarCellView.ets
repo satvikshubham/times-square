@@ -31,7 +31,7 @@ export struct CalendarCellView {
   tsNotInMonthTextColor: ResourceColor = "#787a7d"
   tsSelectedTextColor: ResourceColor  = "#fafafa"
   tsSelectedGridBackgroundColor: ResourceColor= "#3a4352"
-  tsGridShape: string = "Square"
+  tsGridShape: string = "Circle"
   tsGridRadius: string = '0vp'
 
   // Logic

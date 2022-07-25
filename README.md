@@ -33,20 +33,20 @@ To use the calendar dependency
 ```
 CalendarMainModel({
           tsTypeOfCalendar: Type of Calendar [Single|Multi|Range],
-          tsBgColor: "#FFFFFF",
-          tsGridTextSize:'14fp',
-          tsMonthTextSize:  '14fp',
-          tsMonthTextColor: "#000000",
-          tsSelectedTextColor: "#fafafa",
-          tsSelectedGridBackgroundColor: "#3a4352",
-          tsNotInMonthTextColor: "#787a7d",
-          tsInMonthColor: "#ebf5ef",
-          tsNotInMonthColor: "#d0d9d4",
-          tsInMonthTextColor: "#303133",
-          tsSetSelection: true,
-          tsWithNumbers: true,
-          tsLanguage: "Arabic",
-          tsGridShape: "Square"
+          tsBgColor: Calendar background color,
+          tsGridTextSize: Calendar grid text size,
+          tsMonthTextSize:  Calendar month text size,
+          tsMonthTextColor: Calendar month text color,
+          tsSelectedTextColor: Calendar selected text color,
+          tsSelectedGridBackgroundColor: Calendar selected grid background color,
+          tsNotInMonthTextColor: Calendar not in month text color,
+          tsInMonthColor: Calendar in month text color,
+          tsNotInMonthColor: Calendar grid not in month color,
+          tsInMonthTextColor: Calendar grid in month color,
+          tsSetSelection: Setting selection,
+          tsWithNumbers: Display numbers [For arabic only],
+          tsLanguage: [English|Arabic],
+          tsGridShape: Calendar grid shape [Square|Circle],
 ```
 
 ## Styling

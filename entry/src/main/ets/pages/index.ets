@@ -25,6 +25,7 @@ struct Index {
   selectedButtonColor: ResourceColor = "#403927"
   unselectedButtonTextColor: ResourceColor = "#0c1f1a"
   selectedButtonTextColor: ResourceColor = "#f5f3ed"
+
   getButtonColor= (buttonType: string, buttonName: string): ResourceColor => {
     if (buttonType === buttonName) {
       return this.selectedButtonColor
@@ -230,7 +231,7 @@ struct Index {
           tsInMonthColor: "#ebf5ef",
           tsNotInMonthColor: "#d0d9d4",
           tsInMonthTextColor: "#303133",
-          tsSetSelection: true,
+          tsSetSelection: false,
           tsWithNumbers: true,
           tsLanguage: "English",
           tsGridShape: "Square"
@@ -273,7 +274,7 @@ struct Index {
           tsSetSelection: true,
           tsWithNumbers: true,
           tsLanguage: "English",
-          tsGridShape: "Square"
+          tsGridShape: "Circle"
         })
       }
       if (this.buttonType === "Arabic") {
@@ -295,7 +296,7 @@ struct Index {
           tsGridShape: "Square"
         })
       }
-      if (this.buttonType === "Arabic with digits") {
+      if (this.buttonType === "Arabic with digits ") {
         CalendarMainModel({
           tsTypeOfCalendar: "Single",
           tsBgColor: "#FFFFFF",

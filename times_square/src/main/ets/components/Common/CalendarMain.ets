@@ -317,7 +317,20 @@ struct DialogBoxComponent {
     Column() {
       Stack({ alignContent: Alignment.Bottom }) {
         CalendarMainModel({
-          tsTypeOfCalendar: "Single"
+          tsTypeOfCalendar: this.tsTypeOfCalendar,
+          tsBgColor: this.tsBgColor,
+          tsGridTextSize: this.tsGridTextSize,
+          tsMonthTextSize:  this.tsMonthTextSize,
+          tsMonthTextColor: this.tsMonthTextColor,
+          tsSelectedTextColor: this.tsSelectedTextColor,
+          tsSelectedGridBackgroundColor: this.tsSelectedGridBackgroundColor,
+          tsNotInMonthTextColor: this.tsNotInMonthTextColor,
+          tsInMonthColor: this.tsInMonthColor,
+          tsNotInMonthColor: this.tsNotInMonthColor,
+          tsInMonthTextColor: this.tsInMonthTextColor,
+          tsSetSelection: this.tsSetSelection,
+          tsWithNumbers: this.tsWithNumbers,
+          tsLanguage: this.tsLanguage
         })
         Row() {
           Button({ type: ButtonType.Normal }) {
