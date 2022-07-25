@@ -17,7 +17,7 @@
 import { CalendarCellView } from './CalendarCellView'
 import { DATE } from './DATE'
 import { Calendar }from './Calendar'
-
+import {monthInEnglish,weekDaysInEnglish,weekDaysInArabic,monthsInArabic, arabicDigits} from './Values'
 @Entry
 @Component
 export struct CalendarMainModel {
@@ -46,7 +46,6 @@ export struct CalendarMainModel {
   tsLanguage: string = "English"
   tsGridShape: string = "Square"
   tsDayIcon: Resource = $r('app.string.page_show')
-
   dialogBoxController: CustomDialogController = new CustomDialogController({
     builder: DialogBoxComponent({
       tsTypeOfCalendar: this.tsTypeOfCalendar,
@@ -85,7 +84,7 @@ export struct CalendarMainModel {
             Month({
               month: this.monthArray[item],
               year: this.yearArray[item],
-              tsTypeOfCalendar : this.tsTypeOfCalendar,
+              tsTypeOfCalendar: this.tsTypeOfCalendar,
               selectedDateFinal: $selectedDateFinal,
               tsGridTextSize: this.tsGridTextSize,
               tsMonthTextSize: this.tsMonthTextSize,
@@ -116,12 +115,10 @@ struct Month {
   month: number = 6
   monthDays: string [] = []
   inMonthArray: boolean []= []
-  months: string [] = ["January", "February",
-  "March", "April", "May", "June", "July", "August",
-  "September", "October", "November", "December"]
-  weekDays: string [] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+  months: string [] = monthInEnglish
+  weekDays: string [] = weekDaysInEnglish
   tsDayIcon: Resource
-  tsTypeOfCalendar : string = "Single"
+  tsTypeOfCalendar: string = "Single"
   tsGridTextSize: number | string  = '14fp'
   tsMonthTextSize: number | string  = '16fp'
   tsMonthTextColor: ResourceColor = "#000000"
@@ -136,7 +133,7 @@ struct Month {
   tsLanguage: string = "English"
   tsGridShape: string = "Square"
   replaceNumberWithArabic = (num: number): string => {
-    let arabic = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+    let arabic = arabicDigits
     let k = ""
     let fd = num % 10
     let sd = Math.floor(num / 10)
@@ -165,21 +162,10 @@ struct Month {
           this.monthDays[i] = this.replaceNumberWithArabic(+this.monthDays[i])
         }
       }
-      this.weekDays = ['السبت', 'الجمعه', 'الخميس', 'الأربعاء', 'الثلاثاء', 'الأثنين', 'الأحد']
+      this.weekDays = weekDaysInArabic
       this.monthDays = this.rotateAfterEvery7th(this.monthDays)
       this.inMonthArray = this.rotateAfterEvery7th(this.inMonthArray)
-      this.months = ['يناير',
-      'فبراير',
-      'مارس',
-      'إبريل',
-      'مايو',
-      'يونيه',
-      'يوليه',
-      'أغسطس',
-      'سبتمبر',
-      'أكتوبر',
-      'نوفمبر',
-      'ديسمبر']
+      this.months = monthsInArabic
     }
   }
 
@@ -320,7 +306,7 @@ struct DialogBoxComponent {
           tsTypeOfCalendar: this.tsTypeOfCalendar,
           tsBgColor: this.tsBgColor,
           tsGridTextSize: this.tsGridTextSize,
-          tsMonthTextSize:  this.tsMonthTextSize,
+          tsMonthTextSize: this.tsMonthTextSize,
           tsMonthTextColor: this.tsMonthTextColor,
           tsSelectedTextColor: this.tsSelectedTextColor,
           tsSelectedGridBackgroundColor: this.tsSelectedGridBackgroundColor,
@@ -330,7 +316,9 @@ struct DialogBoxComponent {
           tsInMonthTextColor: this.tsInMonthTextColor,
           tsSetSelection: this.tsSetSelection,
           tsWithNumbers: this.tsWithNumbers,
-          tsLanguage: this.tsLanguage
+          tsLanguage: this.tsLanguage,
+          tsGridShape: this.tsGridShape,
+          tsDayIcon: this.tsDayIcon
         })
         Row() {
           Button({ type: ButtonType.Normal }) {

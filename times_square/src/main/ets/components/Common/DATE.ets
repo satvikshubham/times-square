@@ -41,13 +41,13 @@ export class DATE {
   getDate = (): number [] => {
     return [this.day, this.month, this.year]
   }
-  getDay = () : number =>{
+  getDay = (): number => {
     return this.day
   }
-  getMonth = () : number =>{
+  getMonth = (): number => {
     return this.month
   }
-  getYear = () : number =>{
+  getYear = (): number => {
     return this.year
   }
 }

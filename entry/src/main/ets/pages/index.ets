@@ -25,7 +25,6 @@ struct Index {
   selectedButtonColor: ResourceColor = "#403927"
   unselectedButtonTextColor: ResourceColor = "#0c1f1a"
   selectedButtonTextColor: ResourceColor = "#f5f3ed"
-
   getButtonColor= (buttonType: string, buttonName: string): ResourceColor => {
     if (buttonType === buttonName) {
       return this.selectedButtonColor
@@ -114,17 +113,6 @@ struct Index {
           .backgroundColor(this.getButtonColor(this.buttonType, "Customized"))
 
           Button({ type: ButtonType.Normal }) {
-            Text('Decorator').fontSize('20fp')
-              .padding({ left: '20vp', right: '20vp' })
-              .fontColor(this.getButtonTextColor(this.buttonType, "Decorator"))
-          }
-          .onClick(() => {
-            this.buttonType = "Decorator"
-          })
-          .shadow({ radius: 10 })
-          .backgroundColor(this.getButtonColor(this.buttonType, "Decorator"))
-
-          Button({ type: ButtonType.Normal }) {
             Text('Arabic').fontSize('20fp')
               .padding({ left: '20vp', right: '20vp' })
               .fontColor(this.getButtonTextColor(this.buttonType, "Arabic"))
@@ -165,8 +153,8 @@ struct Index {
         CalendarMainModel({
           tsTypeOfCalendar: "Single",
           tsBgColor: "#FFFFFF",
-          tsGridTextSize:'14fp',
-          tsMonthTextSize:  '14fp',
+          tsGridTextSize: '14fp',
+          tsMonthTextSize: '14fp',
           tsMonthTextColor: "#000000",
           tsSelectedTextColor: "#fafafa",
           tsSelectedGridBackgroundColor: "#3a4352",
@@ -184,8 +172,8 @@ struct Index {
         CalendarMainModel({
           tsTypeOfCalendar: "Multi",
           tsBgColor: "#FFFFFF",
-          tsGridTextSize:'14fp',
-          tsMonthTextSize:  '14fp',
+          tsGridTextSize: '14fp',
+          tsMonthTextSize: '14fp',
           tsMonthTextColor: "#000000",
           tsSelectedTextColor: "#fafafa",
           tsSelectedGridBackgroundColor: "#3a4352",
@@ -203,8 +191,8 @@ struct Index {
         CalendarMainModel({
           tsTypeOfCalendar: "Range",
           tsBgColor: "#FFFFFF",
-          tsGridTextSize:'14fp',
-          tsMonthTextSize:  '14fp',
+          tsGridTextSize: '14fp',
+          tsMonthTextSize: '14fp',
           tsMonthTextColor: "#000000",
           tsSelectedTextColor: "#fafafa",
           tsSelectedGridBackgroundColor: "#3a4352",
@@ -222,8 +210,8 @@ struct Index {
         CalendarMainModel({
           tsTypeOfCalendar: "Single",
           tsBgColor: "#FFFFFF",
-          tsGridTextSize:'14fp',
-          tsMonthTextSize:  '14fp',
+          tsGridTextSize: '14fp',
+          tsMonthTextSize: '14fp',
           tsMonthTextColor: "#000000",
           tsSelectedTextColor: "#fafafa",
           tsSelectedGridBackgroundColor: "#3a4352",
@@ -242,8 +230,8 @@ struct Index {
           tsTypeOfCalendar: "Multi",
           tsIsDialog: true,
           tsBgColor: "#FFFFFF",
-          tsGridTextSize:'14fp',
-          tsMonthTextSize:  '14fp',
+          tsGridTextSize: '14fp',
+          tsMonthTextSize: '14fp',
           tsMonthTextColor: "#000000",
           tsSelectedTextColor: "#fafafa",
           tsSelectedGridBackgroundColor: "#3a4352",
@@ -259,11 +247,11 @@ struct Index {
       }
       if (this.buttonType === "Customized") {
         CalendarMainModel({
-          tsTypeOfCalendar: "Single",
+          tsTypeOfCalendar: "Range",
           tsIsDialog: true,
           tsBgColor: "#FFFFFF",
-          tsGridTextSize:'14fp',
-          tsMonthTextSize:  '14fp',
+          tsGridTextSize: '14fp',
+          tsMonthTextSize: '14fp',
           tsMonthTextColor: "#000000",
           tsSelectedTextColor: "#fafafa",
           tsSelectedGridBackgroundColor: "#3a4352",
@@ -281,8 +269,8 @@ struct Index {
         CalendarMainModel({
           tsTypeOfCalendar: "Single",
           tsBgColor: "#FFFFFF",
-          tsGridTextSize:'14fp',
-          tsMonthTextSize:  '14fp',
+          tsGridTextSize: '14fp',
+          tsMonthTextSize: '14fp',
           tsMonthTextColor: "#000000",
           tsSelectedTextColor: "#fafafa",
           tsSelectedGridBackgroundColor: "#3a4352",
@@ -296,12 +284,12 @@ struct Index {
           tsGridShape: "Square"
         })
       }
-      if (this.buttonType === "Arabic with digits ") {
+      if (this.buttonType === "Arabic with digits") {
         CalendarMainModel({
           tsTypeOfCalendar: "Single",
           tsBgColor: "#FFFFFF",
-          tsGridTextSize:'14fp',
-          tsMonthTextSize:  '14fp',
+          tsGridTextSize: '14fp',
+          tsMonthTextSize: '14fp',
           tsMonthTextColor: "#000000",
           tsSelectedTextColor: "#fafafa",
           tsSelectedGridBackgroundColor: "#3a4352",
@@ -312,6 +300,26 @@ struct Index {
           tsSetSelection: true,
           tsWithNumbers: true,
           tsLanguage: "Arabic",
+          tsGridShape: "Square"
+        })
+      }
+
+      if (this.buttonType === "Custom View") {
+        CalendarMainModel({
+          tsTypeOfCalendar: "Single",
+          tsBgColor: "#FFFFFF",
+          tsGridTextSize: '14fp',
+          tsMonthTextSize: '14fp',
+          tsMonthTextColor: "#000000",
+          tsSelectedTextColor: "#fafafa",
+          tsSelectedGridBackgroundColor: "#3a4352",
+          tsNotInMonthTextColor: "#787a7d",
+          tsInMonthColor: "#ebf5ef",
+          tsNotInMonthColor: "#d0d9d4",
+          tsInMonthTextColor: "#303133",
+          tsSetSelection: true,
+          tsWithNumbers: true,
+          tsLanguage: "English",
           tsGridShape: "Square"
         })
       }

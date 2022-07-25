@@ -77,6 +77,6 @@ export class Calendar {
       }
       i = i + 1
     }
-    return {listOfYear,listOfMonths}
+    return { listOfYear, listOfMonths }
   }
 }
