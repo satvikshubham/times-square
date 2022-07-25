@@ -78,31 +78,33 @@ export struct CalendarMainModel {
 
   build() {
     Column() {
-      List({ initialIndex: 13 }) {
-        ForEach(this.indexArray, (item) => {
-          ListItem() {
-            Month({
-              month: this.monthArray[item],
-              year: this.yearArray[item],
-              tsTypeOfCalendar: this.tsTypeOfCalendar,
-              selectedDateFinal: $selectedDateFinal,
-              tsGridTextSize: this.tsGridTextSize,
-              tsMonthTextSize: this.tsMonthTextSize,
-              tsMonthTextColor: this.tsMonthTextColor,
-              tsSelectedTextColor: this.tsSelectedTextColor,
-              tsSelectedGridBackgroundColor: this.tsSelectedGridBackgroundColor,
-              tsNotInMonthTextColor: this.tsNotInMonthTextColor,
-              tsInMonthColor: this.tsInMonthColor,
-              tsNotInMonthColor: this.tsNotInMonthColor,
-              tsInMonthTextColor: this.tsInMonthTextColor,
-              tsSetSelection: this.tsSetSelection,
-              tsWithNumbers: this.tsWithNumbers,
-              tsLanguage: this.tsLanguage,
-              tsGridShape: this.tsGridShape,
-              tsDayIcon: this.tsDayIcon
-            })
-          }
-        })
+      if (!this.tsIsDialog){
+        List({ initialIndex: 13 }) {
+          ForEach(this.indexArray, (item) => {
+            ListItem() {
+              Month({
+                month: this.monthArray[item],
+                year: this.yearArray[item],
+                tsTypeOfCalendar: this.tsTypeOfCalendar,
+                selectedDateFinal: $selectedDateFinal,
+                tsGridTextSize: this.tsGridTextSize,
+                tsMonthTextSize: this.tsMonthTextSize,
+                tsMonthTextColor: this.tsMonthTextColor,
+                tsSelectedTextColor: this.tsSelectedTextColor,
+                tsSelectedGridBackgroundColor: this.tsSelectedGridBackgroundColor,
+                tsNotInMonthTextColor: this.tsNotInMonthTextColor,
+                tsInMonthColor: this.tsInMonthColor,
+                tsNotInMonthColor: this.tsNotInMonthColor,
+                tsInMonthTextColor: this.tsInMonthTextColor,
+                tsSetSelection: this.tsSetSelection,
+                tsWithNumbers: this.tsWithNumbers,
+                tsLanguage: this.tsLanguage,
+                tsGridShape: this.tsGridShape,
+                tsDayIcon: this.tsDayIcon
+              })
+            }
+          })
+        }
       }
     }.backgroundColor(this.tsBgColor)
   }
@@ -327,7 +329,7 @@ struct DialogBoxComponent {
             this.controller.close()
           })
           .width('100vp')
-          .backgroundColor("#544343")
+          .backgroundColor(this.tsSelectedGridBackgroundColor)
           .shadow({ radius: 3 })
         }.backgroundColor("#FFFFFF").width('100%').height('60vp')
       }

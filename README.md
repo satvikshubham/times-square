@@ -21,7 +21,14 @@ import { CalendarMainModel } from '@ohos/times_square'
 ```
 ## Screenshots
 ****
-
+![](./Images/Single.png)
+![](./Images/Multi.png)
+![](./Images/Range.png)
+![](./Images/Dialog.png)
+![](./Images/Customized.png)
+![](./Images/Arabic.png)
+![](./Images/ArabicWithDigits.png)
+![](./Images/CustomView.png)
 ## How to use it
 ### Imports
 Import the following

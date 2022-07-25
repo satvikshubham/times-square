@@ -254,10 +254,10 @@ struct Index {
           tsMonthTextSize: '14fp',
           tsMonthTextColor: "#000000",
           tsSelectedTextColor: "#fafafa",
-          tsSelectedGridBackgroundColor: "#3a4352",
+          tsSelectedGridBackgroundColor: "#1b0e1f",
           tsNotInMonthTextColor: "#787a7d",
-          tsInMonthColor: "#ebf5ef",
-          tsNotInMonthColor: "#d0d9d4",
+          tsInMonthColor: "#f08565",
+          tsNotInMonthColor: "#e8bdb0",
           tsInMonthTextColor: "#303133",
           tsSetSelection: true,
           tsWithNumbers: true,
@@ -320,7 +320,8 @@ struct Index {
           tsSetSelection: true,
           tsWithNumbers: true,
           tsLanguage: "English",
-          tsGridShape: "Square"
+          tsGridShape: "Square",
+          tsDayIcon: $r('app.media.app_icon')
         })
       }
     }.padding('20vp')
