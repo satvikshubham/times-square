@@ -14,14 +14,21 @@
  * limitations under the License.
  */
 
-import { CalendarCellView } from './CalendarCellView'
+import { CalendarCellComponent } from './CalendarCellComponent'
 import { DATE } from './DATE'
 import { Calendar }from './Calendar'
-import {monthInEnglish,weekDaysInEnglish,weekDaysInArabic,monthsInArabic, arabicDigits} from './Values'
-@Entry
+import { CalendarModel } from './CalendarModel'
+import { monthInEnglish, weekDaysInEnglish, weekDaysInArabic, monthsInArabic, arabicDigits
+} from './Values'
+import { CalendarOptions } from './Types'
+import prompt from '@system.prompt';
+
+
 @Component
 export struct CalendarMainModel {
-  @State selectedDateFinal: number[][] = []
+  options: CalendarOptions = undefined
+  @State calendarModel: CalendarModel = undefined
+  @State selectedDates: number[][] = []
   currentMonth = new Date().getMonth()
   currentYear = new Date().getFullYear()
   monthArray: number[]
@@ -29,111 +36,55 @@ export struct CalendarMainModel {
   indexArray: number [] = Array.apply(null, Array(23)).map(function (item, i) {
     return i
   })
-  tsTypeOfCalendar: string = "Single"
-  tsIsDialog: boolean = false
-  tsBgColor: ResourceColor = "#FFFFFF"
-  tsGridTextSize: number | string  = '14fp'
-  tsMonthTextSize: number | string  = '14fp'
-  tsMonthTextColor: ResourceColor = "#000000"
-  tsSelectedTextColor: ResourceColor  = "#fafafa"
-  tsSelectedGridBackgroundColor: ResourceColor= "#3a4352"
-  tsNotInMonthTextColor: ResourceColor = "#787a7d"
-  tsInMonthColor: ResourceColor = "#ebf5ef"
-  tsNotInMonthColor: ResourceColor = "#d0d9d4"
-  tsInMonthTextColor: ResourceColor = "#303133"
-  tsSetSelection: boolean = true
-  tsWithNumbers: boolean = true
-  tsLanguage: string = "English"
-  tsGridShape: string = "Square"
-  tsDayIcon: Resource = $r('app.string.page_show')
   dialogBoxController: CustomDialogController = new CustomDialogController({
-    builder: DialogBoxComponent({
-      tsTypeOfCalendar: this.tsTypeOfCalendar,
-      tsGridTextSize: this.tsGridTextSize,
-      tsMonthTextSize: this.tsMonthTextSize,
-      tsMonthTextColor: this.tsMonthTextColor,
-      tsSelectedTextColor: this.tsSelectedTextColor,
-      tsSelectedGridBackgroundColor: this.tsSelectedGridBackgroundColor,
-      tsNotInMonthTextColor: this.tsNotInMonthTextColor,
-      tsInMonthColor: this.tsInMonthColor,
-      tsNotInMonthColor: this.tsNotInMonthColor,
-      tsInMonthTextColor: this.tsInMonthTextColor,
-      tsSetSelection: this.tsSetSelection,
-      tsWithNumbers: this.tsWithNumbers,
-      tsLanguage: this.tsLanguage,
-      tsGridShape: this.tsGridShape,
-      tsDayIcon: this.tsDayIcon
-    }),
-    autoCancel: true,
-  })
+        builder: DialogBoxComponent({
+          options: this.options
+        }),
+        autoCancel: true,
+      })
 
   aboutToAppear() {
     var temp = Calendar.getCalendarForYear(this.currentMonth, this.currentYear)
     this.monthArray = temp.listOfMonths
     this.yearArray = temp.listOfYear
-    if (this.tsIsDialog) {
+    if (this.calendarModel == undefined) {
+      this.calendarModel = new CalendarModel(this.options);
+    }
+    if (this.calendarModel.tsIsDialog) {
       this.dialogBoxController.open()
     }
   }
 
   build() {
     Column() {
-      if (!this.tsIsDialog){
+      if (!this.calendarModel.tsIsDialog) {
         List({ initialIndex: 13 }) {
           ForEach(this.indexArray, (item) => {
             ListItem() {
               Month({
                 month: this.monthArray[item],
                 year: this.yearArray[item],
-                tsTypeOfCalendar: this.tsTypeOfCalendar,
-                selectedDateFinal: $selectedDateFinal,
-                tsGridTextSize: this.tsGridTextSize,
-                tsMonthTextSize: this.tsMonthTextSize,
-                tsMonthTextColor: this.tsMonthTextColor,
-                tsSelectedTextColor: this.tsSelectedTextColor,
-                tsSelectedGridBackgroundColor: this.tsSelectedGridBackgroundColor,
-                tsNotInMonthTextColor: this.tsNotInMonthTextColor,
-                tsInMonthColor: this.tsInMonthColor,
-                tsNotInMonthColor: this.tsNotInMonthColor,
-                tsInMonthTextColor: this.tsInMonthTextColor,
-                tsSetSelection: this.tsSetSelection,
-                tsWithNumbers: this.tsWithNumbers,
-                tsLanguage: this.tsLanguage,
-                tsGridShape: this.tsGridShape,
-                tsDayIcon: this.tsDayIcon
+                calendarModel: $calendarModel,
+                selectedDates : $selectedDates
               })
             }
           })
         }
       }
-    }.backgroundColor(this.tsBgColor)
+    }.backgroundColor(this.calendarModel.tsBgColor)
   }
 }
 
 @Component
 struct Month {
-  @Link selectedDateFinal: number [][]
+  @Link calendarModel: CalendarModel
+  @Link selectedDates : number [][]
   year: number = 2021
   month: number = 6
   monthDays: string [] = []
   inMonthArray: boolean []= []
   months: string [] = monthInEnglish
   weekDays: string [] = weekDaysInEnglish
-  tsDayIcon: Resource
-  tsTypeOfCalendar: string = "Single"
-  tsGridTextSize: number | string  = '14fp'
-  tsMonthTextSize: number | string  = '16fp'
-  tsMonthTextColor: ResourceColor = "#000000"
-  tsSelectedGridBackgroundColor: ResourceColor= "#3a4352"
-  tsInMonthColor: ResourceColor = "#ebf5ef"
-  tsNotInMonthColor: ResourceColor = "#d0d9d4"
-  tsSelectedTextColor: ResourceColor  = "#fafafa"
-  tsInMonthTextColor: ResourceColor = "#303133"
-  tsNotInMonthTextColor: ResourceColor = "#787a7d"
-  tsSetSelection: boolean = true
-  tsWithNumbers: boolean = true
-  tsLanguage: string = "English"
-  tsGridShape: string = "Square"
   replaceNumberWithArabic = (num: number): string => {
     let arabic = arabicDigits
     let k = ""
@@ -158,8 +109,8 @@ struct Month {
     var temp = Calendar.getDaysArray(this.year, this.month)
     this.monthDays = temp.days
     this.inMonthArray = temp.inMonthArray
-    if (this.tsLanguage === "Arabic") {
-      if (!this.tsWithNumbers) {
+    if (this.calendarModel.tsLanguage === "Arabic") {
+      if (!this.calendarModel.tsWithNumbers) {
         for (let i = 0; i < this.monthDays.length; i++) {
           this.monthDays[i] = this.replaceNumberWithArabic(+this.monthDays[i])
         }
@@ -169,6 +120,7 @@ struct Month {
       this.inMonthArray = this.rotateAfterEvery7th(this.inMonthArray)
       this.months = monthsInArabic
     }
+
   }
 
   isCorrect = (startDate: DATE, endDate: DATE): boolean => {
@@ -182,52 +134,52 @@ struct Month {
     }
   }
   push = (date: DATE): void => {
-    if (this.tsSetSelection) {
-      if (this.tsTypeOfCalendar === "Single") {
-        if (this.selectedDateFinal.length == 0) {
-          this.selectedDateFinal.push(date.getDate())
+    if (this.calendarModel.tsSetSelection) {
+      if (this.calendarModel.tsTypeOfCalendar === "Single") {
+        if (this.selectedDates.length == 0) {
+          this.selectedDates.push(date.getDate())
         }
         else {
-          this.selectedDateFinal.pop()
-          this.selectedDateFinal.push(date.getDate())
+          this.selectedDates.pop()
+          this.selectedDates.push(date.getDate())
         }
       }
-      if (this.tsTypeOfCalendar === "Multi") {
+      if (this.calendarModel.tsTypeOfCalendar === "Multi") {
         let d = date.getDate()
-        let ind = this.selectedDateFinal.findIndex(x => x[0] == d[0] && x[1] == d[1] && x[2] == d[2])
+        let ind = this.selectedDates.findIndex(x => x[0] == d[0] && x[1] == d[1] && x[2] == d[2])
         if (ind != -1) {
-          this.selectedDateFinal.splice(ind, 1)
+          this.selectedDates.splice(ind, 1)
         }
         else {
-          this.selectedDateFinal.push(d)
+          this.selectedDates.push(d)
         }
       }
-      if (this.tsTypeOfCalendar === "Range") {
+      if (this.calendarModel.tsTypeOfCalendar === "Range") {
         let d = date.getDate()
-        if (this.selectedDateFinal.length == 0) {
-          this.selectedDateFinal.push(d)
+        if (this.selectedDates.length == 0) {
+          this.selectedDates.push(d)
         }
         else {
-          if (this.selectedDateFinal.length == 1) {
-            let startDate: DATE = new DATE(this.selectedDateFinal[0][0], this.selectedDateFinal[0][1], this.selectedDateFinal[0][2])
+          if (this.selectedDates.length == 1) {
+            let startDate: DATE = new DATE(this.selectedDates[0][0], this.selectedDates[0][1], this.selectedDates[0][2])
             if (this.isCorrect(startDate, date)) {
-              let tempStart: Date = new Date(this.selectedDateFinal[0][2], this.selectedDateFinal[0][1], this.selectedDateFinal[0][0])
+              let tempStart: Date = new Date(this.selectedDates[0][2], this.selectedDates[0][1], this.selectedDates[0][0])
               let tempEnd: Date = new Date(date.getYear(), date.getMonth(), date.getDay())
               tempStart.setDate(tempStart.getDate() + 1)
               const d = new Date(tempStart.getTime())
               while (d <= tempEnd) {
-                this.selectedDateFinal.push([d.getDate(), d.getMonth(), d.getFullYear()]);
+                this.selectedDates.push([d.getDate(), d.getMonth(), d.getFullYear()]);
                 d.setDate(d.getDate() + 1);
               }
             }
             else {
-              this.selectedDateFinal.pop()
-              this.selectedDateFinal.push([date.getDay(), date.getMonth(), date.getYear()])
+              this.selectedDates.pop()
+              this.selectedDates.push([date.getDay(), date.getMonth(), date.getYear()])
             }
           }
           else {
-            this.selectedDateFinal = []
-            this.selectedDateFinal.push(date.getDate())
+            this.selectedDates = []
+            this.selectedDates.push(date.getDate())
           }
         }
       }
@@ -235,39 +187,56 @@ struct Month {
     else {
     }
   }
+  getMessage = (): string => {
+    if (this.selectedDates.length == 0) {
+      return ""
+    }
+    if (this.selectedDates.length == 1) {
+      return this.selectedDates[0][0] + "/" + (this.selectedDates[0][1] + 1) + "/" + this.selectedDates[0][2]
+    }
+    else {
+      let n = this.selectedDates.length
+      if (this.calendarModel.tsTypeOfCalendar === "Range") {
+        return this.selectedDates[0][0] + "/" + (this.selectedDates[0][1] + 1) + "/" + this.selectedDates[0][2] + " - " +
+        this.selectedDates[n-1][0] + "/" + (this.selectedDates[n-1][1] + 1) + "/" + this.selectedDates[n-1][2]
+      }
+      else {
+        return "added " + this.selectedDates[n-1][0] + "/" + (this.selectedDates[n-1][1] + 1) + "/" + this.selectedDates[n-1][2]
+      }
+    }
+  }
 
   build() {
     Column() {
-      Text(this.months[this.month-1] + " " + this.year).fontSize(this.tsMonthTextSize).alignSelf(ItemAlign.Start)
-        .fontColor(this.tsMonthTextColor)
+      Text(this.months[this.month-1] + " " + this.year)
+        .fontSize(this.calendarModel.tsMonthTextSize)
+        .alignSelf(ItemAlign.Start)
+        .fontColor(this.calendarModel.tsMonthTextColor)
       Grid() {
         ForEach(this.weekDays, (item) => {
           GridItem() {
-            Text(item).fontSize(this.tsGridTextSize)
+            Text(item).fontSize(this.calendarModel.tsGridTextSize)
           }
         })
         ForEach(this.monthDays, (item, index) => {
           GridItem() {
-            CalendarCellView({
+            CalendarCellComponent({
               date: item,
               month: this.month - 1,
               year: this.year,
               inMonth: this.inMonthArray[index],
-              selectedDate: $selectedDateFinal,
-              tsGridTextSize: this.tsGridTextSize,
-              tsSelectedTextColor: this.tsSelectedTextColor,
-              tsSelectedGridBackgroundColor: this.tsSelectedGridBackgroundColor,
-              tsNotInMonthTextColor: this.tsNotInMonthTextColor,
-              tsInMonthColor: this.tsInMonthColor,
-              tsNotInMonthColor: this.tsNotInMonthColor,
-              tsInMonthTextColor: this.tsInMonthTextColor,
-              tsGridShape: this.tsGridShape,
-              tsDayIcon: this.tsDayIcon
+              calendarModel: $calendarModel,
+              selectedDates : $selectedDates
             })
           }.padding('2vp')
           .onClick(() => {
             let d: DATE = new DATE(item, this.month - 1, this.year)
             this.push(d)
+            if (this.calendarModel.tsSetSelection){
+              prompt.showToast({
+                message: this.getMessage()
+              })
+            }
           })
         })
       }
@@ -278,49 +247,38 @@ struct Month {
   }
 }
 
+
 @CustomDialog
 struct DialogBoxComponent {
+  // check
+//  @Link calendarModel: CalendarModel
+  options: CalendarOptions
   controller: CustomDialogController
   cancel: () => void
   okay: () => void
-  tsTypeOfCalendar: string = "Single"
-  tsIsDialog: boolean = false
-  tsBgColor: ResourceColor = "#FFFFFF"
-  tsGridTextSize: number | string  = '14fp'
-  tsMonthTextSize: number | string  = '14fp'
-  tsMonthTextColor: ResourceColor = "#000000"
-  tsSelectedTextColor: ResourceColor  = "#fafafa"
-  tsSelectedGridBackgroundColor: ResourceColor= "#3a4352"
-  tsNotInMonthTextColor: ResourceColor = "#787a7d"
-  tsInMonthColor: ResourceColor = "#ebf5ef"
-  tsNotInMonthColor: ResourceColor = "#d0d9d4"
-  tsInMonthTextColor: ResourceColor = "#303133"
-  tsSetSelection: boolean = true
-  tsWithNumbers: boolean = true
-  tsLanguage: string = "English"
-  tsGridShape: string = "Square"
-  tsDayIcon: Resource = $r('app.string.page_show')
-
   build() {
     Column() {
       Stack({ alignContent: Alignment.Bottom }) {
         CalendarMainModel({
-          tsTypeOfCalendar: this.tsTypeOfCalendar,
-          tsBgColor: this.tsBgColor,
-          tsGridTextSize: this.tsGridTextSize,
-          tsMonthTextSize: this.tsMonthTextSize,
-          tsMonthTextColor: this.tsMonthTextColor,
-          tsSelectedTextColor: this.tsSelectedTextColor,
-          tsSelectedGridBackgroundColor: this.tsSelectedGridBackgroundColor,
-          tsNotInMonthTextColor: this.tsNotInMonthTextColor,
-          tsInMonthColor: this.tsInMonthColor,
-          tsNotInMonthColor: this.tsNotInMonthColor,
-          tsInMonthTextColor: this.tsInMonthTextColor,
-          tsSetSelection: this.tsSetSelection,
-          tsWithNumbers: this.tsWithNumbers,
-          tsLanguage: this.tsLanguage,
-          tsGridShape: this.tsGridShape,
-          tsDayIcon: this.tsDayIcon
+          options : {
+            tsTypeOfCalendar:  this.options.tsTypeOfCalendar,
+            tsBgColor:  this.options.tsBgColor,
+            tsGridTextSize:  this.options.tsGridTextSize,
+            tsMonthTextSize:  this.options.tsMonthTextSize,
+            tsMonthTextColor:  this.options.tsMonthTextColor,
+            tsSelectedTextColor:  this.options.tsSelectedTextColor,
+            tsSelectedGridBackgroundColor:  this.options.tsSelectedGridBackgroundColor,
+            tsNotInMonthTextColor:  this.options.tsNotInMonthTextColor,
+            tsInMonthColor:  this.options.tsInMonthColor,
+            tsNotInMonthColor:  this.options.tsNotInMonthColor,
+            tsInMonthTextColor:  this.options.tsInMonthTextColor,
+            tsSetSelection:  this.options.tsSetSelection,
+            tsWithNumbers:  this.options.tsWithNumbers,
+            tsLanguage:  this.options.tsLanguage,
+            tsGridShape:  this.options.tsGridShape,
+            tsGridRadius : this.options.tsGridRadius,
+            tsDayIcon:  this.options.tsDayIcon
+          }
         })
         Row() {
           Button({ type: ButtonType.Normal }) {
@@ -329,7 +287,7 @@ struct DialogBoxComponent {
             this.controller.close()
           })
           .width('100vp')
-          .backgroundColor(this.tsSelectedGridBackgroundColor)
+          .backgroundColor(this.options.tsSelectedGridBackgroundColor)
           .shadow({ radius: 3 })
         }.backgroundColor("#FFFFFF").width('100%').height('60vp')
       }

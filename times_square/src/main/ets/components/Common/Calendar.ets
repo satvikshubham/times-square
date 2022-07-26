@@ -21,7 +21,6 @@ export class Calendar {
     let d = new Date(year, month - 1, 1);
     return d.getDay();
   }
-
   static isLeapYear = (year: number): boolean => {
     return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
   }

@@ -14,8 +14,7 @@
  * limitations under the License.
  */
 
-import { CalendarMainModel } from '@ohos/times_square'
-
+import {CalendarMainModel ,  CalendarType} from '@ohos/times_square'
 @Entry
 @Component
 struct Index {
@@ -41,7 +40,6 @@ struct Index {
       return this.unselectedButtonTextColor
     }
   }
-
   build() {
     Column() {
       Scroll(this.scroller) {
@@ -151,177 +149,196 @@ struct Index {
 
       if (this.buttonType === 'Single') {
         CalendarMainModel({
-          tsTypeOfCalendar: "Single",
-          tsBgColor: "#FFFFFF",
-          tsGridTextSize: '14fp',
-          tsMonthTextSize: '14fp',
-          tsMonthTextColor: "#000000",
-          tsSelectedTextColor: "#fafafa",
-          tsSelectedGridBackgroundColor: "#3a4352",
-          tsNotInMonthTextColor: "#787a7d",
-          tsInMonthColor: "#ebf5ef",
-          tsNotInMonthColor: "#d0d9d4",
-          tsInMonthTextColor: "#303133",
-          tsSetSelection: true,
-          tsWithNumbers: true,
-          tsLanguage: "English",
-          tsGridShape: "Square"
+          options : {
+            tsTypeOfCalendar: CalendarType.SINGLE,
+            tsIsDialog: false,
+            tsBgColor: "#FFFFFF",
+            tsGridTextSize: '14fp',
+            tsMonthTextSize: '14fp',
+            tsMonthTextColor: "#000000",
+            tsSelectedTextColor: "#fafafa",
+            tsSelectedGridBackgroundColor: "#3a4352",
+            tsNotInMonthTextColor: "#787a7d",
+            tsInMonthColor: "#ebf5ef",
+            tsNotInMonthColor: "#d0d9d4",
+            tsInMonthTextColor: "#303133",
+            tsSetSelection: true,
+            tsWithNumbers: true,
+            tsLanguage: "English",
+            tsGridShape: "Square"
+          }
         })
       }
       if (this.buttonType === 'Multi') {
         CalendarMainModel({
-          tsTypeOfCalendar: "Multi",
-          tsBgColor: "#FFFFFF",
-          tsGridTextSize: '14fp',
-          tsMonthTextSize: '14fp',
-          tsMonthTextColor: "#000000",
-          tsSelectedTextColor: "#fafafa",
-          tsSelectedGridBackgroundColor: "#3a4352",
-          tsNotInMonthTextColor: "#787a7d",
-          tsInMonthColor: "#ebf5ef",
-          tsNotInMonthColor: "#d0d9d4",
-          tsInMonthTextColor: "#303133",
-          tsSetSelection: true,
-          tsWithNumbers: true,
-          tsLanguage: "English",
-          tsGridShape: "Square"
+          options: {
+            tsTypeOfCalendar: CalendarType.MULTI,
+            tsBgColor: "#FFFFFF",
+            tsGridTextSize: '14fp',
+            tsMonthTextSize: '14fp',
+            tsMonthTextColor: "#000000",
+            tsSelectedTextColor: "#fafafa",
+            tsSelectedGridBackgroundColor: "#3a4352",
+            tsNotInMonthTextColor: "#787a7d",
+            tsInMonthColor: "#ebf5ef",
+            tsNotInMonthColor: "#d0d9d4",
+            tsInMonthTextColor: "#303133",
+            tsSetSelection: true,
+            tsWithNumbers: true,
+            tsLanguage: "English",
+            tsGridShape: "Square"
+          }
         })
       }
       if (this.buttonType === 'Range') {
         CalendarMainModel({
-          tsTypeOfCalendar: "Range",
-          tsBgColor: "#FFFFFF",
-          tsGridTextSize: '14fp',
-          tsMonthTextSize: '14fp',
-          tsMonthTextColor: "#000000",
-          tsSelectedTextColor: "#fafafa",
-          tsSelectedGridBackgroundColor: "#3a4352",
-          tsNotInMonthTextColor: "#787a7d",
-          tsInMonthColor: "#ebf5ef",
-          tsNotInMonthColor: "#d0d9d4",
-          tsInMonthTextColor: "#303133",
-          tsSetSelection: true,
-          tsWithNumbers: true,
-          tsLanguage: "English",
-          tsGridShape: "Square"
+          options:{
+            tsTypeOfCalendar: CalendarType.RANGE,
+            tsBgColor: "#FFFFFF",
+            tsGridTextSize: '14fp',
+            tsMonthTextSize: '14fp',
+            tsMonthTextColor: "#000000",
+            tsSelectedTextColor: "#fafafa",
+            tsSelectedGridBackgroundColor: "#3a4352",
+            tsNotInMonthTextColor: "#787a7d",
+            tsInMonthColor: "#ebf5ef",
+            tsNotInMonthColor: "#d0d9d4",
+            tsInMonthTextColor: "#303133",
+            tsSetSelection: true,
+            tsWithNumbers: true,
+            tsLanguage: "English",
+            tsGridShape: "Square"
+          }
         })
       }
       if (this.buttonType === "DisplayOnly") {
         CalendarMainModel({
-          tsTypeOfCalendar: "Single",
-          tsBgColor: "#FFFFFF",
-          tsGridTextSize: '14fp',
-          tsMonthTextSize: '14fp',
-          tsMonthTextColor: "#000000",
-          tsSelectedTextColor: "#fafafa",
-          tsSelectedGridBackgroundColor: "#3a4352",
-          tsNotInMonthTextColor: "#787a7d",
-          tsInMonthColor: "#ebf5ef",
-          tsNotInMonthColor: "#d0d9d4",
-          tsInMonthTextColor: "#303133",
-          tsSetSelection: false,
-          tsWithNumbers: true,
-          tsLanguage: "English",
-          tsGridShape: "Square"
+          options:{
+            tsTypeOfCalendar: CalendarType.SINGLE,
+            tsBgColor: "#FFFFFF",
+            tsGridTextSize: '14fp',
+            tsMonthTextSize: '14fp',
+            tsMonthTextColor: "#000000",
+            tsSelectedTextColor: "#fafafa",
+            tsSelectedGridBackgroundColor: "#3a4352",
+            tsNotInMonthTextColor: "#787a7d",
+            tsInMonthColor: "#ebf5ef",
+            tsNotInMonthColor: "#d0d9d4",
+            tsInMonthTextColor: "#303133",
+            tsSetSelection: false,
+            tsWithNumbers: true,
+            tsLanguage: "English",
+            tsGridShape: "Square"
+          }
         })
       }
       if (this.buttonType === "Dialog") {
         CalendarMainModel({
-          tsTypeOfCalendar: "Multi",
-          tsIsDialog: true,
-          tsBgColor: "#FFFFFF",
-          tsGridTextSize: '14fp',
-          tsMonthTextSize: '14fp',
-          tsMonthTextColor: "#000000",
-          tsSelectedTextColor: "#fafafa",
-          tsSelectedGridBackgroundColor: "#3a4352",
-          tsNotInMonthTextColor: "#787a7d",
-          tsInMonthColor: "#ebf5ef",
-          tsNotInMonthColor: "#d0d9d4",
-          tsInMonthTextColor: "#303133",
-          tsSetSelection: true,
-          tsWithNumbers: true,
-          tsLanguage: "English",
-          tsGridShape: "Square"
+          options:{
+            tsTypeOfCalendar: CalendarType.MULTI,
+            tsIsDialog: true,
+            tsBgColor: "#FFFFFF",
+            tsGridTextSize: '14fp',
+            tsMonthTextSize: '14fp',
+            tsMonthTextColor: "#000000",
+            tsSelectedTextColor: "#fafafa",
+            tsSelectedGridBackgroundColor: "#3a4352",
+            tsNotInMonthTextColor: "#787a7d",
+            tsInMonthColor: "#ebf5ef",
+            tsNotInMonthColor: "#d0d9d4",
+            tsInMonthTextColor: "#303133",
+            tsSetSelection: true,
+            tsWithNumbers: true,
+            tsLanguage: "English",
+            tsGridShape: "Square"
+          }
         })
       }
       if (this.buttonType === "Customized") {
         CalendarMainModel({
-          tsTypeOfCalendar: "Range",
-          tsIsDialog: true,
-          tsBgColor: "#FFFFFF",
-          tsGridTextSize: '14fp',
-          tsMonthTextSize: '14fp',
-          tsMonthTextColor: "#000000",
-          tsSelectedTextColor: "#fafafa",
-          tsSelectedGridBackgroundColor: "#1b0e1f",
-          tsNotInMonthTextColor: "#787a7d",
-          tsInMonthColor: "#f08565",
-          tsNotInMonthColor: "#e8bdb0",
-          tsInMonthTextColor: "#303133",
-          tsSetSelection: true,
-          tsWithNumbers: true,
-          tsLanguage: "English",
-          tsGridShape: "Circle"
+          options:{
+            tsTypeOfCalendar: CalendarType.RANGE,
+            tsIsDialog: true,
+            tsBgColor: "#FFFFFF",
+            tsGridTextSize: '14fp',
+            tsMonthTextSize: '14fp',
+            tsMonthTextColor: "#000000",
+            tsSelectedTextColor: "#fafafa",
+            tsSelectedGridBackgroundColor: "#1b0e1f",
+            tsNotInMonthTextColor: "#787a7d",
+            tsInMonthColor: "#f08565",
+            tsNotInMonthColor: "#e8bdb0",
+            tsInMonthTextColor: "#303133",
+            tsSetSelection: true,
+            tsWithNumbers: true,
+            tsLanguage: "English",
+            tsGridShape: "Circle"
+          }
         })
       }
       if (this.buttonType === "Arabic") {
         CalendarMainModel({
-          tsTypeOfCalendar: "Single",
-          tsBgColor: "#FFFFFF",
-          tsGridTextSize: '14fp',
-          tsMonthTextSize: '14fp',
-          tsMonthTextColor: "#000000",
-          tsSelectedTextColor: "#fafafa",
-          tsSelectedGridBackgroundColor: "#3a4352",
-          tsNotInMonthTextColor: "#787a7d",
-          tsInMonthColor: "#ebf5ef",
-          tsNotInMonthColor: "#d0d9d4",
-          tsInMonthTextColor: "#303133",
-          tsSetSelection: true,
-          tsWithNumbers: false,
-          tsLanguage: "Arabic",
-          tsGridShape: "Square"
+          options:{
+            tsTypeOfCalendar: CalendarType.SINGLE,
+            tsBgColor: "#FFFFFF",
+            tsGridTextSize: '14fp',
+            tsMonthTextSize: '14fp',
+            tsMonthTextColor: "#000000",
+            tsSelectedTextColor: "#fafafa",
+            tsSelectedGridBackgroundColor: "#3a4352",
+            tsNotInMonthTextColor: "#787a7d",
+            tsInMonthColor: "#ebf5ef",
+            tsNotInMonthColor: "#d0d9d4",
+            tsInMonthTextColor: "#303133",
+            tsSetSelection: true,
+            tsWithNumbers: false,
+            tsLanguage: "Arabic",
+            tsGridShape: "Square"
+          }
         })
       }
       if (this.buttonType === "Arabic with digits") {
         CalendarMainModel({
-          tsTypeOfCalendar: "Single",
-          tsBgColor: "#FFFFFF",
-          tsGridTextSize: '14fp',
-          tsMonthTextSize: '14fp',
-          tsMonthTextColor: "#000000",
-          tsSelectedTextColor: "#fafafa",
-          tsSelectedGridBackgroundColor: "#3a4352",
-          tsNotInMonthTextColor: "#787a7d",
-          tsInMonthColor: "#ebf5ef",
-          tsNotInMonthColor: "#d0d9d4",
-          tsInMonthTextColor: "#303133",
-          tsSetSelection: true,
-          tsWithNumbers: true,
-          tsLanguage: "Arabic",
-          tsGridShape: "Square"
+          options:{
+            tsTypeOfCalendar: CalendarType.SINGLE,
+            tsBgColor: "#FFFFFF",
+            tsGridTextSize: '14fp',
+            tsMonthTextSize: '14fp',
+            tsMonthTextColor: "#000000",
+            tsSelectedTextColor: "#fafafa",
+            tsSelectedGridBackgroundColor: "#3a4352",
+            tsNotInMonthTextColor: "#787a7d",
+            tsInMonthColor: "#ebf5ef",
+            tsNotInMonthColor: "#d0d9d4",
+            tsInMonthTextColor: "#303133",
+            tsSetSelection: true,
+            tsWithNumbers: true,
+            tsLanguage: "Arabic",
+            tsGridShape: "Square"
+          }
         })
       }
 
       if (this.buttonType === "Custom View") {
         CalendarMainModel({
-          tsTypeOfCalendar: "Single",
-          tsBgColor: "#FFFFFF",
-          tsGridTextSize: '14fp',
-          tsMonthTextSize: '14fp',
-          tsMonthTextColor: "#000000",
-          tsSelectedTextColor: "#fafafa",
-          tsSelectedGridBackgroundColor: "#3a4352",
-          tsNotInMonthTextColor: "#787a7d",
-          tsInMonthColor: "#ebf5ef",
-          tsNotInMonthColor: "#d0d9d4",
-          tsInMonthTextColor: "#303133",
-          tsSetSelection: true,
-          tsWithNumbers: true,
-          tsLanguage: "English",
-          tsGridShape: "Square",
-          tsDayIcon: $r('app.media.app_icon')
+          options:{
+            tsTypeOfCalendar: CalendarType.SINGLE,
+            tsBgColor: "#FFFFFF",
+            tsGridTextSize: '14fp',
+            tsMonthTextSize: '14fp',
+            tsMonthTextColor: "#000000",
+            tsSelectedTextColor: "#fafafa",
+            tsSelectedGridBackgroundColor: "#3a4352",
+            tsNotInMonthTextColor: "#787a7d",
+            tsInMonthColor: "#ebf5ef",
+            tsNotInMonthColor: "#d0d9d4",
+            tsInMonthTextColor: "#303133",
+            tsSetSelection: true,
+            tsWithNumbers: true,
+            tsLanguage: "English",
+            tsGridShape: "Square",
+            tsDayIcon: $r('app.media.app_icon')
+          }
         })
       }
     }.padding('20vp')
