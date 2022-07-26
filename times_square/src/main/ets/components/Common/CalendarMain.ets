@@ -18,8 +18,7 @@ import { CalendarCellComponent } from './CalendarCellComponent'
 import { DATE } from './DATE'
 import { Calendar }from './Calendar'
 import { CalendarModel } from './CalendarModel'
-import { monthInEnglish, weekDaysInEnglish, weekDaysInArabic, monthsInArabic, arabicDigits
-} from './Values'
+import { monthInEnglish, weekDaysInEnglish, weekDaysInArabic, monthsInArabic, arabicDigits } from './Values'
 import { CalendarOptions } from './Types'
 import prompt from '@system.prompt';
 
@@ -37,11 +36,11 @@ export struct CalendarMainModel {
     return i
   })
   dialogBoxController: CustomDialogController = new CustomDialogController({
-        builder: DialogBoxComponent({
-          options: this.options
-        }),
-        autoCancel: true,
-      })
+    builder: DialogBoxComponent({
+      options: this.options
+    }),
+    autoCancel: true,
+  })
 
   aboutToAppear() {
     var temp = Calendar.getCalendarForYear(this.currentMonth, this.currentYear)
@@ -65,7 +64,7 @@ export struct CalendarMainModel {
                 month: this.monthArray[item],
                 year: this.yearArray[item],
                 calendarModel: $calendarModel,
-                selectedDates : $selectedDates
+                selectedDates: $selectedDates
               })
             }
           })
@@ -78,7 +77,7 @@ export struct CalendarMainModel {
 @Component
 struct Month {
   @Link calendarModel: CalendarModel
-  @Link selectedDates : number [][]
+  @Link selectedDates: number [][]
   year: number = 2021
   month: number = 6
   monthDays: string [] = []
@@ -226,13 +225,13 @@ struct Month {
               year: this.year,
               inMonth: this.inMonthArray[index],
               calendarModel: $calendarModel,
-              selectedDates : $selectedDates
+              selectedDates: $selectedDates
             })
           }.padding('2vp')
           .onClick(() => {
             let d: DATE = new DATE(item, this.month - 1, this.year)
             this.push(d)
-            if (this.calendarModel.tsSetSelection){
+            if (this.calendarModel.tsSetSelection) {
               prompt.showToast({
                 message: this.getMessage()
               })
@@ -250,34 +249,33 @@ struct Month {
 
 @CustomDialog
 struct DialogBoxComponent {
-  // check
-//  @Link calendarModel: CalendarModel
   options: CalendarOptions
   controller: CustomDialogController
   cancel: () => void
   okay: () => void
+
   build() {
     Column() {
       Stack({ alignContent: Alignment.Bottom }) {
         CalendarMainModel({
-          options : {
-            tsTypeOfCalendar:  this.options.tsTypeOfCalendar,
-            tsBgColor:  this.options.tsBgColor,
-            tsGridTextSize:  this.options.tsGridTextSize,
-            tsMonthTextSize:  this.options.tsMonthTextSize,
-            tsMonthTextColor:  this.options.tsMonthTextColor,
-            tsSelectedTextColor:  this.options.tsSelectedTextColor,
-            tsSelectedGridBackgroundColor:  this.options.tsSelectedGridBackgroundColor,
-            tsNotInMonthTextColor:  this.options.tsNotInMonthTextColor,
-            tsInMonthColor:  this.options.tsInMonthColor,
-            tsNotInMonthColor:  this.options.tsNotInMonthColor,
-            tsInMonthTextColor:  this.options.tsInMonthTextColor,
-            tsSetSelection:  this.options.tsSetSelection,
-            tsWithNumbers:  this.options.tsWithNumbers,
-            tsLanguage:  this.options.tsLanguage,
-            tsGridShape:  this.options.tsGridShape,
-            tsGridRadius : this.options.tsGridRadius,
-            tsDayIcon:  this.options.tsDayIcon
+          options: {
+            tsTypeOfCalendar: this.options.tsTypeOfCalendar,
+            tsBgColor: this.options.tsBgColor,
+            tsGridTextSize: this.options.tsGridTextSize,
+            tsMonthTextSize: this.options.tsMonthTextSize,
+            tsMonthTextColor: this.options.tsMonthTextColor,
+            tsSelectedTextColor: this.options.tsSelectedTextColor,
+            tsSelectedGridBackgroundColor: this.options.tsSelectedGridBackgroundColor,
+            tsNotInMonthTextColor: this.options.tsNotInMonthTextColor,
+            tsInMonthColor: this.options.tsInMonthColor,
+            tsNotInMonthColor: this.options.tsNotInMonthColor,
+            tsInMonthTextColor: this.options.tsInMonthTextColor,
+            tsSetSelection: this.options.tsSetSelection,
+            tsWithNumbers: this.options.tsWithNumbers,
+            tsLanguage: this.options.tsLanguage,
+            tsGridShape: this.options.tsGridShape,
+            tsGridRadius: this.options.tsGridRadius,
+            tsDayIcon: this.options.tsDayIcon
           }
         })
         Row() {

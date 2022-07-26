@@ -17,8 +17,7 @@
 import { CalendarOptions, CalendarType } from './Types'
 
 export class CalendarModel implements CalendarOptions {
-
-  tsSelectedDates : number [][] = []
+  tsSelectedDates: number [][] = []
   tsTypeOfCalendar: CalendarType = CalendarType.SINGLE
   tsIsDialog: boolean = false
   tsBgColor: ResourceColor = "#FFFFFF"
@@ -35,7 +34,7 @@ export class CalendarModel implements CalendarOptions {
   tsWithNumbers: boolean = true
   tsLanguage: string = "English"
   tsGridShape: string = "Square"
-  tsGridRadius : string = '0vp'
+  tsGridRadius: string = '0vp'
   tsDayIcon: Resource = $r('app.string.page_show')
   constructor(options?: CalendarOptions) {
     if (options != undefined) {

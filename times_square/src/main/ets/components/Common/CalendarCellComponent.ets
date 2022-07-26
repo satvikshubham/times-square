@@ -13,15 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {CalendarModel} from './CalendarModel'
+import { CalendarModel } from './CalendarModel'
+
 @Component
 export struct CalendarCellComponent {
   date: number = 0
   month: number = 0
   year: number = 0
   d: number [] = []
-  @Link calendarModel : CalendarModel
-  @Link selectedDates : number [][]
+  @Link calendarModel: CalendarModel
+  @Link selectedDates: number [][]
   inMonth: boolean = true
   isCustom: boolean = false
 

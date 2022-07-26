@@ -14,7 +14,8 @@
  * limitations under the License.
  */
 
-import {CalendarMainModel ,  CalendarType} from '@ohos/times_square'
+import { CalendarMainModel, CalendarType } from '@ohos/times_square'
+
 @Entry
 @Component
 struct Index {
@@ -40,6 +41,7 @@ struct Index {
       return this.unselectedButtonTextColor
     }
   }
+
   build() {
     Column() {
       Scroll(this.scroller) {
@@ -149,7 +151,7 @@ struct Index {
 
       if (this.buttonType === 'Single') {
         CalendarMainModel({
-          options : {
+          options: {
             tsTypeOfCalendar: CalendarType.SINGLE,
             tsIsDialog: false,
             tsBgColor: "#FFFFFF",
@@ -192,7 +194,7 @@ struct Index {
       }
       if (this.buttonType === 'Range') {
         CalendarMainModel({
-          options:{
+          options: {
             tsTypeOfCalendar: CalendarType.RANGE,
             tsBgColor: "#FFFFFF",
             tsGridTextSize: '14fp',
@@ -213,7 +215,7 @@ struct Index {
       }
       if (this.buttonType === "DisplayOnly") {
         CalendarMainModel({
-          options:{
+          options: {
             tsTypeOfCalendar: CalendarType.SINGLE,
             tsBgColor: "#FFFFFF",
             tsGridTextSize: '14fp',
@@ -234,7 +236,7 @@ struct Index {
       }
       if (this.buttonType === "Dialog") {
         CalendarMainModel({
-          options:{
+          options: {
             tsTypeOfCalendar: CalendarType.MULTI,
             tsIsDialog: true,
             tsBgColor: "#FFFFFF",
@@ -256,7 +258,7 @@ struct Index {
       }
       if (this.buttonType === "Customized") {
         CalendarMainModel({
-          options:{
+          options: {
             tsTypeOfCalendar: CalendarType.RANGE,
             tsIsDialog: true,
             tsBgColor: "#FFFFFF",
@@ -278,7 +280,7 @@ struct Index {
       }
       if (this.buttonType === "Arabic") {
         CalendarMainModel({
-          options:{
+          options: {
             tsTypeOfCalendar: CalendarType.SINGLE,
             tsBgColor: "#FFFFFF",
             tsGridTextSize: '14fp',
@@ -299,7 +301,7 @@ struct Index {
       }
       if (this.buttonType === "Arabic with digits") {
         CalendarMainModel({
-          options:{
+          options: {
             tsTypeOfCalendar: CalendarType.SINGLE,
             tsBgColor: "#FFFFFF",
             tsGridTextSize: '14fp',
@@ -321,7 +323,7 @@ struct Index {
 
       if (this.buttonType === "Custom View") {
         CalendarMainModel({
-          options:{
+          options: {
             tsTypeOfCalendar: CalendarType.SINGLE,
             tsBgColor: "#FFFFFF",
             tsGridTextSize: '14fp',
