@@ -39,7 +39,8 @@ import { CalendarMainModel } from '@ohos/times_square'
 To use the calendar dependency
 ```
 CalendarMainModel({
-          tsTypeOfCalendar: Type of Calendar [Single|Multi|Range],
+  options{
+          tsTypeOfCalendar: Type of Calendar CalendarType.[Single|Multi|Range],
           tsBgColor: Calendar background color,
           tsGridTextSize: Calendar grid text size,
           tsMonthTextSize:  Calendar month text size,
@@ -54,8 +55,31 @@ CalendarMainModel({
           tsWithNumbers: Display numbers [For arabic only],
           tsLanguage: [English|Arabic],
           tsGridShape: Calendar grid shape [Square|Circle],
+          }
 ```
+Options : CalendarOptions to set the options of the calendar
+For example : 
 
+```
+options: {
+            tsTypeOfCalendar: CalendarType.SINGLE,
+            tsBgColor: "#FFFFFF",
+            tsGridTextSize: '14fp',
+            tsMonthTextSize: '14fp',
+            tsMonthTextColor: "#000000",
+            tsSelectedTextColor: "#fafafa",
+            tsSelectedGridBackgroundColor: "#3a4352",
+            tsNotInMonthTextColor: "#787a7d",
+            tsInMonthColor: "#ebf5ef",
+            tsNotInMonthColor: "#d0d9d4",
+            tsInMonthTextColor: "#303133",
+            tsSetSelection: true,
+            tsWithNumbers: true,
+            tsLanguage: "English",
+            tsGridShape: "Square",
+            tsDayIcon: $r('app.media.app_icon')
+          }
+```
 ## Styling
 ****
 You can style the Calendar  using theses attributes :
